@@ -1,0 +1,42 @@
+[
+  {
+    "id": "soldat",
+    "text": "Солдат"
+  },
+  {
+    "id": "fourier",
+    "text": "Фурьер"
+  },
+  {
+    "id": "college_reg",
+    "text": "Коллежский регистратор",
+    "rank": 14,
+    "type": "citizen"
+  },
+  {
+    "id": "praporshik",
+    "text": "Прапорщик",
+    "rank": 14,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "gofmeister",
+    "text": "Гофмейстер пажей",
+    "rank": 14,
+    "type": "court"
+  },
+  {
+    "id": "kuchenmeister",
+    "text": "Кухенмейстер",
+    "rank": 14,
+    "type": "court"
+  },
+  {
+    "id": "mundshenk",
+    "text": "Мундшенк",
+    "rank": 14,
+    "type": "court"
+  }
+]
+
