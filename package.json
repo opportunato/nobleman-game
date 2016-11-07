@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "mocha --compilers js:babel-register --require babel-polyfill"
+    "test": "mocha --compilers js:babel-register --require babel-polyfill",
+    "compile_script": "babel-node --presets es2015 scriptToJSON.js"
   },
   "repository": {
     "url": "https://github.com/opportunato/js-stack-playground.git",
@@ -22,6 +23,7 @@
     "redux-immutable": "^3.0.8"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -33,6 +35,8 @@
     "babel-preset-stage-1": "^6.16.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
+    "csv": "^1.1.0",
+    "csv-parse": "^1.1.7",
     "del": "^2.2.2",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",

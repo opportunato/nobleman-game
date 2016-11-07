@@ -8,7 +8,8 @@ import { getNextStateId, getState, getInitialState } from '../src/reducers/gameS
 
 should();
 
-describe('Script', () => {
+describe('Script', function() {
+  this.timeout(400000);
   let missingStates = [];
   let traversedStates = [];
   let allStates = Object.keys(script);
@@ -27,7 +28,7 @@ describe('Script', () => {
     });
   };
 
-  beforeEach(() => {
+  beforeEach(function() {
     missingStates = [];
     traversedStates = {};
     allStates = Object.keys(script);

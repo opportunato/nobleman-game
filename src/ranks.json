@@ -8,15 +8,134 @@
     "text": "Фурьер"
   },
   {
+    "id": "sergeant",
+    "text": "Сержант"
+  },
+  {
+    "id": "guard_corporal",
+    "text": "Капрал гвардии"
+  },
+  {
+    "id": "guard_sergeant",
+    "text": "Сержант гвардии"
+  },
+  {
+    "id": "corporal",
+    "text": "Капрал гвардии"
+  },
+  {
     "id": "college_reg",
     "text": "Коллежский регистратор",
     "rank": 14,
     "type": "citizen"
   },
   {
+    "id": "nadvor_sovetnik",
+    "text": "Надворный советник",
+    "rank": 7,
+    "type": "citizen"
+  },
+  {
+    "id": "state_sovetnik",
+    "text": "Статский советник",
+    "rank": 5,
+    "type": "citizen"
+  },
+  {
     "id": "praporshik",
     "text": "Прапорщик",
     "rank": 14,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "podporuchik",
+    "text": "Подпоручик",
+    "rank": 13,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "poruchik",
+    "text": "Поручик",
+    "rank": 12,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "guard_praproshik",
+    "text": "Гвардейский прапорщик",
+    "rank": 12,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "captain",
+    "text": "Капитан",
+    "rank": 9,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "rotmistr",
+    "text": "Ротмистр",
+    "rank": 9,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "major",
+    "text": "Майор",
+    "rank": 8,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "premier_major",
+    "text": "Премьер-майор",
+    "rank": 8,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "podpolkovnik",
+    "text": "Подполковник",
+    "rank": 7,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "guard_captain",
+    "text": "Гвардейский капитан",
+    "rank": 7,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "brigadeer",
+    "text": "Бригадир",
+    "rank": 4,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "general_major",
+    "text": "Генерал-майор",
+    "rank": 4,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "general_poruchik",
+    "text": "Генерал-поручик",
+    "rank": 3,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "general_anshef",
+    "text": "Генерал-аншеф",
+    "rank": 2,
     "type": "military",
     "militaryType": "army"
   },
@@ -36,6 +155,30 @@
     "id": "mundshenk",
     "text": "Мундшенк",
     "rank": 14,
+    "type": "court"
+  },
+  {
+    "id": "camer-yunker",
+    "text": "Камер-юнкер",
+    "rank": 5,
+    "type": "court"
+  },
+  {
+    "id": "ober-kamerger",
+    "text": "Обер-камергер",
+    "rank": 4,
+    "type": "court"
+  },
+  {
+    "id": "gofmarshal",
+    "text": "Гофмаршал двора",
+    "rank": 4,
+    "type": "court"
+  },
+  {
+    "id": "ober-gofmarshal",
+    "text": "Обер-гофмаршал",
+    "rank": 2,
     "type": "court"
   }
 ]
