@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { nextGameState } from '../../../actions/gameStateActions';
 import { nextStage } from '../../../actions/stageActions';
+import ranks from '../../../ranks.json';
 
 const mapDispatchToProps = dispatch => ({
   nextState: (index) => { dispatch(nextGameState(index)); },
@@ -14,6 +15,15 @@ const mapStateToProps = state => ({
 
 const Game = ({ gameState, nextState, nextStage }) => (
   <div>
+    <p className="game__age">{ gameState.age }</p>
+    <p className="game__year">{ gameState.year }</p>
+    <p className="game__year">
+      {
+        gameState.rank
+          ? ranks.find(rank => rank.id === gameState.rank).text
+          : 'Без ранга'
+      }
+    </p>
     <p className="game__text">{ gameState.text }</p>
     <p className="game__options">
       {

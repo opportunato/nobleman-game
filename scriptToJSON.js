@@ -34,6 +34,11 @@ const getOptionText = (string, index) => {
   return string.split(index + ')')[1].split('Переход к')[0].trim();
 };
 
+const getRankId = (string) => {
+  const rank = ranks.find(rank => string === rank.text);
+  return rank ? rank.id : null;
+};
+
 const getOptions = (string) => {
   if (isFinal(string)) return null;
   if (hasOption(string)) return [
@@ -60,6 +65,7 @@ fs.readFile('./script.csv', (err, data) => {
         age: getAge(state[1]),
         text: getText(state[2]),
         options: getOptions(state[2]),
+        rank: getRankId(state[3].split('\n')[0]),
         final: isFinal(state[2])
       };
     });
