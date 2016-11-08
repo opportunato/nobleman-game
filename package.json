@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
+    "build": "webpack -p",
     "test": "mocha --compilers js:babel-register --require babel-polyfill",
     "compile_script": "babel-node --presets es2015 scriptToJSON.js"
   },
