@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const App = ({ stage }) => (
-  <div>
+  <div className="game">
     { stage === STAGE_RULES && <Rules /> }
     { stage === STAGE_INTRO && <Intro /> }
     { stage === STAGE_GAME && <Game /> }

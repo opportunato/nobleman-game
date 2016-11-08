@@ -64,7 +64,6 @@ fs.readFile('./script.csv', (err, data) => {
       };
     });
 
-    Object.keys(result).forEach(key => { result[key] = omitBy(result[key], (el) => isNull(el) || el === false) });
     fs.writeFile('./src/script.json', JSON.stringify(result, null, 2), (err, data) => {});
   });
 });
