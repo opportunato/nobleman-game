@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import stageReducer from './reducers/stageReducer';
 import gameStateReducer from './reducers/gameStateReducer';
 import App from './containers/app/App';
+import './utils/array.find';
 
 const store = createStore(combineReducers({
   stage: stageReducer,

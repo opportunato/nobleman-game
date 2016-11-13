@@ -1,9 +1,13 @@
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname + '/src',
+  devtool: 'source-map',
   entry: {
-    app: './app.jsx',
+    app: './app.js',
+    client: './client.scss'
   },
   output: {
     path: __dirname + '/dist',
@@ -12,23 +16,37 @@ module.exports = {
   devServer: {
     contentBase: __dirname + '/src',
   },
+  plugins: [
+    new ExtractTextPlugin({
+      filename: 'client.css',
+      allChunks: true
+    })
+  ],
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         use: [{
-          loader: 'babel-loader',
+          loader: 'babel',
         }],
+        exclude: /node_modules/,
       },
       {
         test: /\.json$/,
         use: [{
-          loader: 'json-loader',
+          loader: 'hson',
         }],
       },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          loader: 'css!postcss!resolve-url!sass?sourceMap'
+        })
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
+        loader: 'file?name=images/[hash:7].[ext]'
+      }
     ],
-  },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx'],
   },
 };

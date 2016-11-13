@@ -1,0 +1,247 @@
+@import "style/base";
+@import "style/atomic";
+
+$white-color: white;
+$black-color: #1a1a1a;
+$background-color: #2d2d2d;
+$grey-color: #f0f0f0;
+$separator-color: #bebebe;
+
+.xx-article {
+  background-color: $background-color;
+  color: $white-color;
+
+  &--inverted {
+    background-color: $white-color;
+    color: $black-color;
+  }
+}
+
+.xx-container {
+  width: 960px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.xx-header {
+  margin-bottom: 45px;
+
+  &__chapter {
+    padding-bottom: 0;
+  }
+
+  &__title {
+    font: bold 24px $sans;
+    text-align: center;
+  }
+}
+
+.xx-body {
+  display: flex;
+
+  margin-top: 35px;
+
+  &__sidebar {
+    flex-shrink: 0;
+
+    width: 180px;
+    margin-right: 40px;
+  }
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    padding: 40px;
+
+    background-color: $grey-color;
+    color: $black-color;
+  }
+}
+
+.xx-columns {
+  display: flex;
+
+  &__item {
+    padding: 10px 0;
+    flex: 1;
+
+    &:first-child {
+      border-right: 1px solid $separator-color;
+      padding-right: 20px;
+    }
+
+    &:last-child {
+      padding-left: 40px;
+    }
+  }
+}
+
+.xx-separator {
+  margin: 10px 0;
+  width: 100%;
+  height: 1px;
+
+  background-color: $separator-color;
+}
+
+.xx-space {
+  width: 100%;
+  height: 15px;
+}
+
+.xx-avatar {
+  padding-top: 100%;
+  width: 100%;
+
+  background-color: white;
+  border-radius: 100%;
+}
+
+.xx-small-title {
+  margin: 0 0 3px;
+
+  font: 16px $sans;
+}
+
+.xx-paragraph {
+  margin: 0;
+
+  font: 17px/1.5 $serif;
+}
+
+.xx-tags {
+  margin-top: 90px;
+
+  &__title {
+    margin-bottom: 24px;
+
+    font: italic 17px $serif;
+    color: #969696;
+    text-align: center;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+    border: 1px solid $white-color;
+    height: 60px;
+    width: 100%;
+
+    font: 15px $serif;
+    text-align: center;
+  }
+}
+
+.xx-options {
+  margin-top: 35px;
+
+
+  &__title {
+    border-top: 1px solid $separator-color;
+    border-bottom: 1px solid $separator-color;
+    padding: 12px 0;
+    margin-bottom: 20px;
+
+    font: 16px $sans;
+    text-align: center;
+  }
+
+  &__body {
+    display: flex;
+  }
+
+  &__item {
+    flex: 1;
+
+    font: 17px/1.5 $serif;
+
+    &:first-child {
+      border-right: 1px solid $separator-color;
+    }
+
+    &:last-child {
+      padding-left: 15px;
+    }
+  }
+
+  &__button {
+    display: block;
+
+    margin-top: 20px;
+  }
+}
+
+.xx-letter {
+  display: inline-block;
+
+  margin-right: 5px;
+  width: 20px;
+
+  background-color: #aaaaaa;
+  border-radius: 100%;
+  color: $white-color;
+  font: 13px/20px $sans;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.xx-icon-arrow {
+  display: inline-block;
+
+  height: 16px;
+  width: 24px;
+
+  background: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/arrow.svg');
+  background-size: cover;
+}
+
+.xx-btn {
+  .xx-icon {
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: -10px;
+  }
+}
+
+.xx-result {
+  display: flex;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 110px;
+  }
+
+  &__separator {
+    margin-bottom: 30px;
+    width: 140px;
+  }
+
+  &__text {
+    font: bold 25px $serif;
+    text-align: center;
+  }
+
+  &__replay {
+    margin-top: 60px;
+  }
+}
