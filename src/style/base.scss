@@ -263,6 +263,7 @@ a {
 
   &--small {
     font-size: 13px;
+    line-height: 42px;
     height: 42px;
     padding: 0 30px;
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
@@ -280,4 +281,14 @@ a {
       background-color: rgba(255, 255, 255, 0.3);
     }
   }
+}
+
+.xx-btn-unstyled {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  outline: 0;
 }

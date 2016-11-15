@@ -20,165 +20,448 @@
     "text": "Сержант гвардии"
   },
   {
-    "id": "corporal",
-    "text": "Капрал гвардии"
-  },
-  {
     "id": "college_reg",
     "text": "Коллежский регистратор",
-    "rank": 14,
+    "level": 14,
     "type": "citizen"
   },
   {
-    "id": "nadvor_sovetnik",
+    "id": "province_secretary",
+    "text": "Провинциальный секретарь",
+    "level": 13,
+    "type": "citizen"
+  },
+  {
+    "id": "guberny_secretary",
+    "text": "Губернский секретарь",
+    "level": 12,
+    "type": "citizen"
+  },
+  {
+    "id": "ship_secretary",
+    "text": "Корабельный секретарь",
+    "level": 11,
+    "type": "citizen"
+  },
+  {
+    "id": "college_secretary",
+    "text": "Коллежский секретарь",
+    "level": 10,
+    "type": "citizen"
+  },
+  {
+    "id": "titular_advisor",
+    "text": "Титулярный советник",
+    "level": 9,
+    "type": "citizen"
+  },
+  {
+    "id": "college_accessor",
+    "text": "Коллежский асессор",
+    "level": 8,
+    "type": "citizen"
+  },
+  {
+    "id": "court_advisor",
     "text": "Надворный советник",
-    "rank": 7,
+    "level": 7,
     "type": "citizen"
   },
   {
-    "id": "state_sovetnik",
+    "id": "college_advisor",
+    "text": "Коллежский советник",
+    "level": 6,
+    "type": "citizen"
+  },
+  {
+    "id": "state_advisor",
     "text": "Статский советник",
-    "rank": 5,
+    "level": 5,
+    "type": "citizen"
+  },
+  {
+    "id": "real_state_advisor",
+    "text": "Действительный статский советник",
+    "level": 4,
+    "type": "citizen"
+  },
+  {
+    "id": "secret_advisor",
+    "text": "Тайный советник",
+    "level": 3,
+    "type": "citizen"
+  },
+  {
+    "id": "real_secret_advisor",
+    "text": "Действительный тайный советник",
+    "level": 2,
+    "type": "citizen"
+  },
+  {
+    "id": "cantsler",
+    "text": "Канцлер",
+    "level": 1,
+    "type": "citizen"
+  },
+  {
+    "id": "real_state_advisor_first",
+    "text": "Действительный тайный советник 1-го класса",
+    "level": 1,
     "type": "citizen"
   },
   {
     "id": "praporshik",
     "text": "Прапорщик",
-    "rank": 14,
+    "level": 14,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "podporuchik",
     "text": "Подпоручик",
-    "rank": 13,
+    "level": 13,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "poruchik",
     "text": "Поручик",
-    "rank": 12,
+    "level": 12,
     "type": "military",
     "militaryType": "army"
   },
   {
-    "id": "guard_praproshik",
-    "text": "Гвардейский прапорщик",
-    "rank": 12,
+    "id": "captain-poruchik",
+    "text": "Капитан-поручик",
+    "level": 10,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "captain",
     "text": "Капитан",
-    "rank": 9,
+    "level": 9,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "rotmistr",
     "text": "Ротмистр",
-    "rank": 9,
+    "level": 9,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "major",
     "text": "Майор",
-    "rank": 8,
+    "level": 8,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "premier_major",
     "text": "Премьер-майор",
-    "rank": 8,
+    "level": 8,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "second_major",
+    "text": "Секунд-майор",
+    "level": 8,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "podpolkovnik",
     "text": "Подполковник",
-    "rank": 7,
+    "level": 7,
     "type": "military",
     "militaryType": "army"
   },
   {
-    "id": "guard_captain",
-    "text": "Гвардейский капитан",
-    "rank": 7,
+    "id": "polkovnik",
+    "text": "Полковник",
+    "level": 6,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "brigadeer",
     "text": "Бригадир",
-    "rank": 4,
+    "level": 5,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "general_major",
     "text": "Генерал-майор",
-    "rank": 4,
+    "level": 4,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "general_poruchik",
     "text": "Генерал-поручик",
-    "rank": 3,
+    "level": 3,
     "type": "military",
     "militaryType": "army"
   },
   {
     "id": "general_anshef",
     "text": "Генерал-аншеф",
-    "rank": 2,
+    "level": 2,
     "type": "military",
     "militaryType": "army"
   },
   {
+    "id": "general_feldmarshal",
+    "text": "Генерал-фельдмаршал",
+    "level": 1,
+    "type": "military",
+    "militaryType": "army"
+  },
+  {
+    "id": "guard_praproshik",
+    "text": "Прапорщик",
+    "level": 12,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_podporuchik",
+    "text": "Подпоручик",
+    "level": 10,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_poruchik",
+    "text": "Поручик",
+    "level": 9,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_captain_poruchik",
+    "text": "Капитан-поручик",
+    "level": 8,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_captain",
+    "text": "Капитан",
+    "level": 7,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_second_major",
+    "text": "Секунд-майор",
+    "level": 6,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_premier_major",
+    "text": "Премьер-майор",
+    "level": 5,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_podpolkovnik",
+    "text": "Подполковник",
+    "level": 4,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
+    "id": "guard_polkovnik",
+    "text": "Полковник",
+    "level": 3,
+    "type": "military",
+    "militaryType": "guard"
+  },
+  {
     "id": "gofmeister",
     "text": "Гофмейстер пажей",
-    "rank": 14,
+    "level": 14,
     "type": "court"
   },
   {
     "id": "kuchenmeister",
     "text": "Кухенмейстер",
-    "rank": 14,
+    "level": 14,
     "type": "court"
   },
   {
     "id": "mundshenk",
     "text": "Мундшенк",
-    "rank": 14,
+    "level": 14,
+    "type": "court"
+  },
+  {
+    "id": "gof-yunker",
+    "text": "Гоф-юнкер",
+    "level": 12,
+    "type": "court"
+  },
+  {
+    "id": "court_healer",
+    "text": "Надворный лекарь",
+    "level": 12,
+    "type": "court"
+  },
+  {
+    "id": "court_yeger",
+    "text": "Надворный егермейстер",
+    "level": 9,
+    "type": "court"
+  },
+  {
+    "id": "court_ceremony",
+    "text": "Надворный церемонийместер",
+    "level": 9,
     "type": "court"
   },
   {
     "id": "camer-yunker",
     "text": "Камер-юнкер",
-    "rank": 5,
+    "level": 9,
+    "type": "court"
+  },
+  {
+    "id": "ober_kuchenmeister",
+    "text": "Обер-кухенмейстер",
+    "level": 9,
+    "type": "court"
+  },
+  {
+    "id": "titular_camerger",
+    "text": "Титулярный камергер",
+    "level": 8,
+    "type": "court"
+  },
+  {
+    "id": "gof-shtalmeister",
+    "text": "Гоф-шталмейстер",
+    "level": 8,
+    "type": "court"
+  },
+  {
+    "id": "court_intendant",
+    "text": "Надворный интендант",
+    "level": 8,
+    "type": "court"
+  },
+  {
+    "id": "emperor_gofmeister",
+    "text": "Гофмейстер при императрице",
+    "level": 7,
+    "type": "court"
+  },
+  {
+    "id": "emperor_leib_medic",
+    "text": "Лейб-медикус при императрице",
+    "level": 7,
+    "type": "court"
+  },
+  {
+    "id": "ceremony",
+    "text": "Церемониймейстер",
+    "level": 7,
+    "type": "court"
+  },
+  {
+    "id": "ober-yegermeister",
+    "text": "Обер-егермейстер",
+    "level": 6,
+    "type": "court"
+  },
+  {
+    "id": "real_camerger",
+    "text": "Действительный камергер",
+    "level": 6,
+    "type": "court"
+  },
+  {
+    "id": "gofmarshal",
+    "text": "Гофмаршал",
+    "level": 6,
+    "type": "court"
+  },
+  {
+    "id": "shtalmeister",
+    "text": "Шталмейстер",
+    "level": 6,
+    "type": "court"
+  },
+  {
+    "id": "first_leib_medic",
+    "text": "1-й лейб-медикус",
+    "level": 6,
+    "type": "court"
+  },
+  {
+    "id": "ober-shenk",
+    "text": "Обер-шенк",
+    "level": 5,
+    "type": "court"
+  },
+  {
+    "id": "ober_gofshtalmeister",
+    "text": "Обер-гофшталмейстер",
+    "level": 5,
+    "type": "court"
+  },
+  {
+    "id": "emperror_ober_gofmeister",
+    "text": "Обер-гофмейстер при императрице",
+    "level": 5,
+    "type": "court"
+  },
+  {
+    "id": "gofmeister",
+    "text": "Гофмейстер",
+    "level": 5,
+    "type": "court"
+  },
+  {
+    "id": "secret_cabinet_secretary",
+    "text": "Тайный кабинет-секретарь",
+    "level": 5,
+    "type": "court"
+  },
+  {
+    "id": "ober_ceremony_meister",
+    "text": "Обер-церемониймейстер",
+    "level": 5,
     "type": "court"
   },
   {
     "id": "ober-kamerger",
     "text": "Обер-камергер",
-    "rank": 4,
+    "level": 4,
     "type": "court"
   },
   {
     "id": "gofmarshal",
     "text": "Гофмаршал двора",
-    "rank": 4,
+    "level": 4,
+    "type": "court"
+  },
+  {
+    "id": "ober-shtalmeister",
+    "text": "Обер-шталмейстер",
+    "level": 3,
     "type": "court"
   },
   {
     "id": "ober-gofmarshal",
     "text": "Обер-гофмаршал",
-    "rank": 2,
+    "level": 2,
     "type": "court"
   }
 ]

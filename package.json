@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack -p",
-    "test": "mocha --compilers js:babel-register --require babel-polyfill",
+    "test": "mocha --require babel-polyfill --compilers js:babel-register",
     "compile_script": "babel-node --presets es2015 scriptToJSON.js"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "babel-core": "^6.18.0",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-flow": "^1.0.0",
     "babel-preset-latest": "^6.16.0",

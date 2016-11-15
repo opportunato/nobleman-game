@@ -55,7 +55,7 @@ const Intro = ({ action }) => (
               onClick={action}
             >
               Начать жизнь
-              <i className="xx-icon xx-icon-arrow" />
+              <i className="xx-icon xx-icon--arrow xx-icon--text-before" />
             </button>
           </div>
         </div>

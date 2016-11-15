@@ -35,7 +35,14 @@ const getOptionText = (string, index) => {
 };
 
 const getRankId = (string) => {
-  const rank = ranks.find(rank => string === rank.text);
+  const isGuard = string.indexOf('гвардейский ') !== -1;
+  if (isGuard) {
+    string = string.replace('гвардейский ', '');
+  }
+  const isRank = (rank) => {
+    return string.trim() === rank.text.toLowerCase() && (!isGuard || rank.militaryType === 'guard');
+  };
+  const rank = ranks.find(isRank);
   return rank ? rank.id : null;
 };
 
@@ -65,7 +72,7 @@ fs.readFile('./script.csv', (err, data) => {
         age: getAge(state[1]),
         text: getText(state[2]),
         options: getOptions(state[2]),
-        rank: getRankId(state[3].split('\n')[0]),
+        rank: getRankId(state[3].split('\n')[0].toLowerCase()),
         final: isFinal(state[2])
       };
     });
