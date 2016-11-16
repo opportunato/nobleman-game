@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { nextGameState } from '../../../actions/gameStateActions';
 import { nextStage } from '../../../actions/stageActions';
 import ranks from '../../../ranks.json';
-import Table from '../../../components/table/Table';
+import Table, { romanLevels, rankTypeIcons } from '../../../components/table/Table';
 
 const mapDispatchToProps = dispatch => ({
   nextState: (index) => { dispatch(nextGameState(index)); },
@@ -14,17 +14,34 @@ const mapStateToProps = state => ({
   gameState: state.gameState,
 });
 
+const rankTypes = {
+  citizen: "Гражданский чин",
+  army: "Военный чин",
+  court: "Придворный чин"
+};
+
+const getBadgeType = (rank) => {
+  if (!rank) return "empty";
+  if (!rank.level) return "out-rank";
+  if (rank.level < 8) {
+    return "golden";
+  } else {
+    return "ranked";
+  }
+};
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showTable: true
+      showTable: false
     };
   }
 
   render() {
-    const { gameState, nextState, nextStage } = this.props;
+    const { gameState: { rank: rankId, year, age, text, final, options }, nextState, nextStage } = this.props;
+    const currentRank = ranks.find(rank => rank.id === rankId);
 
     return (
       <div className="xx-article">
@@ -50,33 +67,61 @@ class Game extends React.Component {
               <div className="xx-body__content">
                 <div className="xx-game-header">
                   <div className="xx-game-header__year">
-                    { gameState.year }
+                    { year }
                   </div>
-                  <div className="">
-                    { gameState.age }
-                  </div>
-                  <button onClick={() => this.setState({showTable: true})}>Табель</button>
-                  <div>
-                    {
-                      gameState.rank
-                        ? ranks.find(rank => rank.id === gameState.rank).text
-                        : 'Без ранга'
-                    }
+                  <div className="xx-game-header__row">
+                    <div className="xx-game-header__age">
+                      { age }
+                    </div>
+                    <div className={`xx-game-header__badge xx-badge xx-badge--${getBadgeType(currentRank)}`}>
+                      {
+                        currentRank && currentRank.type &&
+                        <i className={`xx-icon xx-icon--${rankTypeIcons[currentRank.type]}`} />
+                      }
+                      {
+                        currentRank && currentRank.level &&
+                        <div className="xx-badge__title">{romanLevels[currentRank.level]}</div>
+                      }
+                      {
+                        currentRank && currentRank.level &&
+                        <div className="xx-badge__subtitle">класс</div>
+                      }
+                      <div className="xx-badge__ribbon">
+                        <button
+                          className="xx-btn-unstyled"
+                          onClick={() => this.setState({showTable: true})}
+                        >
+                          Табель о рангах
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="xx-game-header__rank">
+                      {
+                        currentRank &&
+                        <div className="xx-game-header__rank-title">{currentRank.text}</div>
+                      }
+                      <div className="xx-game-header__rank-separator xx-separator" />
+                      {
+                        currentRank && currentRank.type &&
+                        <div className="xx-game-header__rank-type">{rankTypes[currentRank.type]}</div>
+                      }
+                    </div>
                   </div>
                 </div>
                 <div className="xx-paragraph">
-                  { gameState.text }
+                  { text }
                 </div>
                 {
-                  gameState.final &&
+                  final &&
                   <button className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c" onClick={() => nextStage()}>
                     <i className="xx-icon xx-icon--arrow" />
                   </button>
                 }
                 {
-                  gameState.options &&
+                  options &&
                   (
-                    gameState.options.length === 1 ?
+                    options.length === 1 ?
                       <button className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c" onClick={() => nextState(0)}>
                         <i className="xx-icon xx-icon--arrow" />
                       </button>
@@ -85,7 +130,7 @@ class Game extends React.Component {
                         <div className="xx-options__title">Выберите, что случится дальше</div>
                         <div className="xx-options__body">
                           {
-                            gameState.options.map(({ text }, index) =>
+                            options.map(({ text }, index) =>
                               <div className="xx-options__item" key={index}>
                                 <div>
                                   <span className="xx-letter">{ index === 0 ? 'а' : 'б' }</span>
@@ -110,7 +155,7 @@ class Game extends React.Component {
             {
               this.state.showTable &&
               <Table
-                currentRank={gameState.rank}
+                currentRank={currentRank}
                 onClose={() => this.setState({ showTable: false })}
               />
             }

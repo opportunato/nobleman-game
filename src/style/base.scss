@@ -129,6 +129,7 @@ a {
 .xx-article {
   min-height: 100%;
   padding-bottom: 100px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .xx-chapter {
@@ -285,6 +286,9 @@ a {
 
 .xx-btn-unstyled {
   cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-decoration: inherit;
   background: transparent;
   border: none;
   padding: 0;

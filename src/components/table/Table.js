@@ -1,7 +1,7 @@
 import React from 'react';
 import ranks from '../../ranks.json';
 
-const romanLevels = {
+export const romanLevels = {
   1: "I",
   2: "II",
   3: "III",
@@ -16,6 +16,12 @@ const romanLevels = {
   12: "XII",
   13: "XIII",
   14: "XIV"
+};
+
+export const rankTypeIcons = {
+  citizen: 'pen',
+  army: 'cannon',
+  court: 'court'
 };
 
 const findRanks = (level, type, militaryType=null) =>
@@ -56,18 +62,18 @@ const Table = ({ currentRank, onClose }) => (
           <div className="xx-text-inverted">Класс</div>
         </div>
         <div className="xx-row__item xx-row__item--title xx-centered">
-          <i className="xx-icon xx-icon--pen" />
+          <i className={`xx-icon xx-icon--${rankTypeIcons.citizen}`} />
           <div>Гражданские чины</div>
         </div>
         <div className="xx-row__item xx-row__item--double">
-          <div className="xx-row__item--title xx-row--top"><i className="xx-icon xx-icon--cannon xx-icon--text-after" />Военные чины</div>
+          <div className="xx-row__item--title xx-row--top"><i className={`xx-icon xx-icon--${rankTypeIcons.army} xx-icon--text-after`} />Военные чины</div>
           <div className="xx-row xx-row--bottom">
             <div className="xx-row__item xx-row__item--title">Армия</div>
             <div className="xx-row__item xx-row__item--title">Гвардия</div>
           </div>
         </div>
         <div className="xx-row__item xx-row__item--title xx-centered">
-          <i className="xx-icon xx-icon--crown" />
+          <i className={`xx-icon xx-icon--${rankTypeIcons.court}`} />
           <div>Придворные чины</div>
         </div>
       </div>

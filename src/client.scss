@@ -246,7 +246,6 @@ $select-color: #ffd700;
 
     background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/cross.svg');
   }
-
   &--text-before {
     vertical-align: middle;
     margin-right: -10px;
@@ -381,7 +380,7 @@ $select-color: #ffd700;
 .xx-table-close-btn {
   align-self: flex-end;
 
-  margin-bottom: 8px;
+  margin: 7px 0 8px;
 }
 
 .xx-text-inverted {
@@ -411,4 +410,124 @@ $select-color: #ffd700;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.xx-game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__year {
+    margin: -10px 0 20px;
+
+    font: 800 60px $serif;
+  }
+
+  &__row {
+    align-self: stretch;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 50px;
+  }
+
+  &__age,
+  &__rank {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-top: 1px solid $separator-color;
+    border-bottom: 1px solid $separator-color;
+    height: 90px;
+  }
+
+  &__age {
+    font: bold 32px $serif;
+  }
+
+  &__rank {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__rank-title {
+    font: bold 17px $sans;
+  }
+
+  &__rank-separator {
+    margin: 8px 0;
+    width: 35px;
+  }
+
+  &__rank-type {
+    font: italic 15px $serif;
+  }
+
+  &__badge {
+    flex-basis: 144px;
+    margin: 0 12px;
+  }
+}
+
+.xx-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: 144px;
+  height: 166px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &--empty {
+    background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/badge_empty.svg');
+  }
+
+  &--out-rank {
+    background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/badge_below.svg');
+  }
+
+  &--ranked {
+    background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/badge_gold.svg');
+  }
+
+  &--golden {
+    background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/badge_super_gold.svg');
+  }
+
+  &__title {
+    margin: 10px 0 -5px;
+    font: bold 50px $serif;
+  }
+
+  &__subtitle {
+    font: italic 17px $serif;
+  }
+
+  &__ribbon {
+    position: absolute;
+    bottom: -18px;
+
+    width: 188px;
+    height: 38px;
+
+    background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/ribbon.svg');
+    background-size: cover;
+    color: $white-color;
+    font: bold 15px $sans;
+    text-align: center;
+
+    > button {
+      border-bottom: 1px solid $white-color;
+      position: relative;
+      top: 8px;
+    }
+  }
 }
