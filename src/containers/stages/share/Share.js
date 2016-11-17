@@ -18,11 +18,11 @@ const Share = ({ action }) => (
           <img src="https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/share/share-proto.jpg" alt=""/>
         </div>
         <div className="xx-result__info">
-          <p className="xx-result__text">
+          <div className="xx-result__text">
             Холод до сердца проник:<br/>
             На гребень жены покойной<br/>
             В спальне я наступил.<br/>
-          </p>
+          </div>
 
           <div className="xx-result__separator xx-separator"></div>
 

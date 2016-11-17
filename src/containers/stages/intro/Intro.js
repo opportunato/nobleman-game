@@ -31,10 +31,10 @@ const Intro = ({ action }) => (
           <div className="xx-separator" />
           <div className="xx-space" />
           <div>
-            <h3 className="xx-small-title">Происхождение</h3>
-            <p className="xx-paragraph">
+            <div className="xx-small-title">Происхождение</div>
+            <div className="xx-paragraph">
               «Фамилия наша издревле дворянская; зовется от вкравшегося прозвища одного из предков моих, мужа честного из немецкой земли, но откуда выезжего, не упомню, а именной родословной изыскать не мог. Потомков же моих предостеречь должен от вклепавшихся в фамилию нашу происшедших из церковников, а то и из мужиков подлого звания, кои вошли в приказную службу, по выслуге чины получили, от неправедных прибытков купили деревни, а ныне фальшиво присвояют себе благородное имя потомственных дворян Хрюшкиных»
-            </p>
+            </div>
           </div>
           <div className="xx-space" />
           <div className="xx-separator" />
@@ -44,8 +44,8 @@ const Intro = ({ action }) => (
               <p className="xx-paragraph">Сельцо Хрюшкино Муромского уезда Владимирской провинции Московской губернии</p>
             </div>
             <div className="xx-columns__item">
-              <h3 className="xx-small-title">Состояние</h3>
-              <p className="xx-paragraph">За отцом (капитан в отставке) ни много ни мало — 100 душ</p>
+              <div className="xx-small-title">Состояние</div>
+              <div className="xx-paragraph">За отцом (капитан в отставке) ни много ни мало — 100 душ</div>
             </div>
           </div>
           <div className="xx-separator" />
