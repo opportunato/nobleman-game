@@ -11,7 +11,9 @@ $select-color: #ffd700;
 $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons';
 
 .xx-article {
-  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
 
   h1, h2 {
     color: inherit;
@@ -59,6 +61,7 @@ $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-schoo
   display: flex;
 
   margin-top: 35px;
+  width: 100%;
 
   &__sidebar {
     flex-shrink: 0;
@@ -340,6 +343,7 @@ $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-schoo
 
     border-left: 1px solid $separator-color;
     padding: 4px 8px;
+    position: relative;
 
     &:first-child {
       border: none;
@@ -347,12 +351,13 @@ $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-schoo
 
     &--class {
       flex: 0 0 40px;
+      padding: 4px 0 !important;
 
       text-align: center;
     }
 
     &--double {
-      flex: 2 0 16px;
+      flex: 2 0 32px;
       padding-bottom: 0;
     }
 
@@ -374,8 +379,11 @@ $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-schoo
     text-align: center;
     line-height: 35px;
 
-    position: relative;
-    top: -8px;
+    position: absolute;
+    top: -4px;
+
+    left: 50%;
+    transform: translate(-50%);
 
     &--selected {
       border-radius: 100%;
