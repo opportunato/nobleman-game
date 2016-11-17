@@ -11,7 +11,7 @@ const Share = ({ action }) => (
     <div className="xx-container">
       <header className="xx-header">
         <a href="" className="xx-chapter xx-header__chapter">Петр I. Модернизация</a>
-        <h1 className="xx-header__title">Жизнь дворянина</h1>
+        <div className="xx-header__title">Жизнь дворянина</div>
       </header>
       <div className="xx-result">
         <div className="xx-result__img">

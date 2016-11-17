@@ -10,12 +10,12 @@ const Note = ({ noteId, onClose }) => {
   return (
     <Modal onClose={onClose}>
       <div className="xx-note">
-        <h2 className="xx-note__title">
+        <div className="xx-note__title">
           { currentNote.title }
-        </h2>
-        <p className="xx-note__text">
+        </div>
+        <div className="xx-note__text">
           { currentNote.text }
-        </p>
+        </div>
       </div>
     </Modal>
   );

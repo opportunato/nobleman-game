@@ -11,7 +11,7 @@ const Intro = ({ action }) => (
     <div className="xx-container">
       <header className="xx-header">
         <a href="" className="xx-chapter xx-header__chapter">Петр I. Модернизация</a>
-        <h1 className="xx-header__title">Жизнь дворянина</h1>
+        <div className="xx-header__title">Жизнь дворянина</div>
       </header>
       <div className="xx-body">
         <aside className="xx-body__sidebar">
@@ -20,11 +20,11 @@ const Intro = ({ action }) => (
         <div className="xx-body__content">
           <div className="xx-columns">
             <div className="xx-columns__item">
-              <h3 className="xx-small-title">Персонаж</h3>
+              <div className="xx-small-title">Персонаж</div>
               <p className="xx-paragraph"><strong>Пётр Алексеевич Хрюшкин</strong></p>
             </div>
             <div className="xx-columns__item">
-              <h3 className="xx-small-title">Год рождения</h3>
+              <div className="xx-small-title">Год рождения</div>
               <p className="xx-paragraph">1735 или 1736 — <i>сам точно не помнит</i></p>
             </div>
           </div>
@@ -40,7 +40,7 @@ const Intro = ({ action }) => (
           <div className="xx-separator" />
           <div className="xx-columns">
             <div className="xx-columns__item">
-              <h3 className="xx-small-title">Владение</h3>
+              <div className="xx-small-title">Владение</div>
               <p className="xx-paragraph">Сельцо Хрюшкино Муромского уезда Владимирской провинции Московской губернии</p>
             </div>
             <div className="xx-columns__item">

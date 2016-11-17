@@ -24,7 +24,7 @@ const LevelNotification = ({ onClose, isLoading, currentRank, transitionText }) 
       {
         !isLoading &&
         <div className="xx-level__body">
-          <h2 className="xx-level__title">{transitionText}</h2>
+          <div className="xx-level__title">{transitionText}</div>
           <Badge
             className="xx-level__badge"
             currentRank={currentRank}

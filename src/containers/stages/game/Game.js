@@ -68,18 +68,18 @@ class Game extends React.Component {
             <a href="" className="xx-chapter xx-header__chapter">
               Петр I. Модернизация
             </a>
-            <h1 className="xx-header__title">
+            <div className="xx-header__title">
               Жизнь дворянина
-            </h1>
+            </div>
           </header>
           {
             !this.state.showTable &&
             <div className="xx-body">
               <aside className="xx-body__sidebar">
                 <div className="xx-tags">
-                  <h2 className="xx-tags__title">
+                  <div className="xx-tags__title">
                     Облако тэгов
-                  </h2>
+                  </div>
                   <ul className="xx-tags__list">
                     <li className="xx-tags__item">
                       <button

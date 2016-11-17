@@ -56,7 +56,7 @@ const Table = ({ currentRank, onClose }) => (
       <i className="xx-icon xx-icon--cross" />
     </button>
     <div className="xx-table">
-      <h2 className="xx-table__title">Табель о рангах</h2>
+      <div className="xx-table__title">Табель о рангах</div>
       <div className="xx-row">
         <div className="xx-row__item xx-row__item--class xx-row__item--title xx-centered">
           <div className="xx-text-inverted">Класс</div>

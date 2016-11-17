@@ -10,14 +10,9 @@ $select-color: #ffd700;
 
 $icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons';
 
-.xx-article {
+div.xx-article {
   * {
     box-sizing: border-box;
-  }
-
-  h1, h2 {
-    color: inherit;
-    width: auto;
   }
 
   a:hover {
