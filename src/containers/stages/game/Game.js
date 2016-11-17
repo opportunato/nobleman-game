@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { nextGameState } from '../../../actions/gameStateActions';
 import { nextStage } from '../../../actions/stageActions';
 import ranks from '../../../ranks.json';
-import Table, { romanLevels, rankTypeIcons } from '../../../components/table/Table';
+import Table from '../../../components/table/Table';
+import Note from '../../../components/note/Note';
+import LevelNotification from '../../../components/LevelNotification';
+import Badge from '../../../components/Badge';
 
 const mapDispatchToProps = dispatch => ({
   nextState: (index) => { dispatch(nextGameState(index)); },
@@ -16,18 +19,8 @@ const mapStateToProps = state => ({
 
 const rankTypes = {
   citizen: "Гражданский чин",
-  army: "Военный чин",
+  military: "Военный чин",
   court: "Придворный чин"
-};
-
-const getBadgeType = (rank) => {
-  if (!rank) return "empty";
-  if (!rank.level) return "out-rank";
-  if (rank.level < 8) {
-    return "golden";
-  } else {
-    return "ranked";
-  }
 };
 
 class Game extends React.Component {
@@ -35,20 +28,49 @@ class Game extends React.Component {
     super(props);
 
     this.state = {
-      showTable: false
+      showTable: false,
+      noteId: null,
+      showLevelModal: false,
+      isLoading: false
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    const {gameState:newGameState} = newProps;
+
+    if (newGameState.id !== this.props.gameState.id) {
+      if (newGameState.transitionText) {
+        this.setState({ isLoading: false });
+      } else {
+        this.setState({ isLoading: false, showLevelModal: false });
+      }
+    }
+  }
+
+  showLevelModal = (callback) => {
+    this.setState({
+      showLevelModal: true,
+      isLoading: true
+    });
+    setTimeout(() => {
+      callback();
+    }, 1000);
+  };
+
   render() {
-    const { gameState: { rank: rankId, year, age, text, final, options }, nextState, nextStage } = this.props;
+    const { gameState: { rank: rankId, year, age, text, final, options, transitionText }, nextState, nextStage } = this.props;
     const currentRank = ranks.find(rank => rank.id === rankId);
 
     return (
       <div className="xx-article">
         <div className="xx-container">
           <header className="xx-header">
-            <a href="" className="xx-chapter xx-header__chapter">Петр I. Модернизация</a>
-            <h1 className="xx-header__title">Жизнь дворянина</h1>
+            <a href="" className="xx-chapter xx-header__chapter">
+              Петр I. Модернизация
+            </a>
+            <h1 className="xx-header__title">
+              Жизнь дворянина
+            </h1>
           </header>
           {
             !this.state.showTable &&
@@ -59,8 +81,22 @@ class Game extends React.Component {
                     Облако тэгов
                   </h2>
                   <ul className="xx-tags__list">
-                    <li className="xx-tags__item">Орден св. Георгия III степени</li>
-                    <li className="xx-tags__item">Конец войны</li>
+                    <li className="xx-tags__item">
+                      <button
+                        className="xx-btn-unstyled"
+                        onClick={() => { this.setState({ noteId: "Орден св. Георгия III степени" }) }}
+                      >
+                        Орден св. Георгия III степени
+                      </button>
+                    </li>
+                    <li className="xx-tags__item">
+                      <button
+                        className="xx-btn-unstyled"
+                        onClick={() => { this.setState({ noteId: "Конец войны" }) }}
+                      >
+                        Конец войны
+                      </button>
+                    </li>
                   </ul>
                 </div>
               </aside>
@@ -73,19 +109,10 @@ class Game extends React.Component {
                     <div className="xx-game-header__age">
                       { age }
                     </div>
-                    <div className={`xx-game-header__badge xx-badge xx-badge--${getBadgeType(currentRank)}`}>
-                      {
-                        currentRank && currentRank.type &&
-                        <i className={`xx-icon xx-icon--${rankTypeIcons[currentRank.type]}`} />
-                      }
-                      {
-                        currentRank && currentRank.level &&
-                        <div className="xx-badge__title">{romanLevels[currentRank.level]}</div>
-                      }
-                      {
-                        currentRank && currentRank.level &&
-                        <div className="xx-badge__subtitle">класс</div>
-                      }
+                    <Badge
+                      className="xx-game-header__badge"
+                      currentRank={currentRank}
+                    >
                       <div className="xx-badge__ribbon">
                         <button
                           className="xx-btn-unstyled"
@@ -94,7 +121,7 @@ class Game extends React.Component {
                           Табель о рангах
                         </button>
                       </div>
-                    </div>
+                    </Badge>
 
                     <div className="xx-game-header__rank">
                       {
@@ -122,7 +149,10 @@ class Game extends React.Component {
                   options &&
                   (
                     options.length === 1 ?
-                      <button className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c" onClick={() => nextState(0)}>
+                      <button
+                        className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c"
+                        onClick={() => this.showLevelModal(() => nextState(0))}
+                      >
                         <i className="xx-icon xx-icon--arrow" />
                       </button>
                       :
@@ -137,7 +167,7 @@ class Game extends React.Component {
                                   { text }
                                   <button
                                     className="xx-btn xx-btn--inverted xx-options__button"
-                                    onClick={() => nextState(index)}
+                                    onClick={() => this.showLevelModal(() => nextState(index))}
                                   >
                                     <i className="xx-icon xx-icon--arrow" />
                                   </button>
@@ -160,6 +190,22 @@ class Game extends React.Component {
               />
             }
         </div>
+        {
+          this.state.noteId &&
+          <Note
+            noteId={this.state.noteId}
+            onClose={() => this.setState({ noteId: null })}
+          />
+        }
+        {
+          this.state.showLevelModal &&
+          <LevelNotification
+            onClose={() => this.setState({ showLevelModal: false })}
+            isLoading={this.state.isLoading}
+            currentRank={currentRank}
+            transitionText={transitionText}
+          />
+        }
       </div>
     );
   }

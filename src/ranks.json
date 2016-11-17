@@ -1,23 +1,28 @@
 [
   {
     "id": "soldat",
-    "text": "Солдат"
+    "text": "Солдат",
+    "type": "military"
   },
   {
     "id": "fourier",
-    "text": "Фурьер"
+    "text": "Фурьер",
+    "type": "military"
   },
   {
     "id": "sergeant",
-    "text": "Сержант"
+    "text": "Сержант",
+    "type": "military"
   },
   {
     "id": "guard_corporal",
-    "text": "Капрал гвардии"
+    "text": "Капрал гвардии",
+    "type": "military"
   },
   {
     "id": "guard_sergeant",
-    "text": "Сержант гвардии"
+    "text": "Сержант гвардии",
+    "type": "military"
   },
   {
     "id": "college_reg",

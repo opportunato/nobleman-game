@@ -20,7 +20,7 @@ export const romanLevels = {
 
 export const rankTypeIcons = {
   citizen: 'pen',
-  army: 'cannon',
+  military: 'cannon',
   court: 'court'
 };
 

@@ -73,7 +73,8 @@ fs.readFile('./script.csv', (err, data) => {
         text: getText(state[2]),
         options: getOptions(state[2]),
         rank: getRankId(state[3].split('\n')[0].toLowerCase()),
-        final: isFinal(state[2])
+        final: isFinal(state[2]),
+        transitionText: state[4]
       };
     });
 

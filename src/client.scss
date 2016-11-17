@@ -8,7 +8,9 @@ $grey-color: #f0f0f0;
 $separator-color: #bebebe;
 $select-color: #ffd700;
 
-.xx-article > * {
+$icons-folder: 'https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons';
+
+.xx-article * {
   box-sizing: border-box;
 }
 
@@ -151,6 +153,11 @@ $select-color: #ffd700;
 
     font: 15px $serif;
     text-align: center;
+
+    > button {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
@@ -446,6 +453,7 @@ $select-color: #ffd700;
 
   &__age {
     font: bold 32px $serif;
+    text-align: center;
   }
 
   &__rank {
@@ -529,5 +537,124 @@ $select-color: #ffd700;
       position: relative;
       top: 8px;
     }
+  }
+}
+
+.xx-note {
+  padding: 60px;
+  width: 775px;
+
+  background: $white-color;
+  color: $black-color;
+
+  &__title {
+    margin-bottom: 20px;
+
+    font: bold 25px $sans;
+  }
+
+  &__text {
+    font: 17px $serif;
+  }
+}
+
+.xx-modal {
+  &__body {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 1010;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1000;
+
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+}
+
+.xx-level {
+  height: 560px;
+  width: 520px;
+
+  background: $white-color;
+  color: $black-color;
+
+  position: relative;
+
+  &__loading,
+  &__badge {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+    top: 145px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 30px;
+    height: 100%;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  &__title {
+    margin-top: 10px;
+    width: 320px;
+
+    font: bold 21px $serif;
+    text-align: center;
+  }
+
+  &__rank {
+    font: bold 21px $sans;
+  }
+
+  &__rank-types {
+    display: flex;
+    list-style: none;
+
+    margin: 30px 0 25px;
+
+    color: #aaa;
+    font: italic 18px $sans;
+
+    > li {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__separator {
+    margin: 0 0 30px;
+  }
+
+  &__rank-type-selected {
+    color: $black-color;
+
+    border-bottom: 1px solid $black-color;
   }
 }
