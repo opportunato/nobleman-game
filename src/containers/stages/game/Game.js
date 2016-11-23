@@ -23,6 +23,16 @@ const rankTypes = {
   court: "Придворный чин"
 };
 
+const openModal = (callback) => {
+  document.body.style.overflow = 'hidden';
+  callback();
+};
+
+const closeModal = (callback) => {
+  document.body.style.overflow = 'auto';
+  callback();
+};
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -48,13 +58,15 @@ class Game extends React.Component {
   }
 
   showLevelModal = (callback) => {
-    this.setState({
-      showLevelModal: true,
-      isLoading: true
+    openModal(() => {
+      this.setState({
+        showLevelModal: true,
+        isLoading: true
+      });
+      setTimeout(() => {
+        callback();
+      }, 1000);
     });
-    setTimeout(() => {
-      callback();
-    }, 1000);
   };
 
   render() {
@@ -72,135 +84,135 @@ class Game extends React.Component {
               Жизнь дворянина
             </div>
           </header>
-          {
-            !this.state.showTable &&
-            <div className="xx-body">
-              <aside className="xx-body__sidebar">
-                <div className="xx-tags">
-                  <div className="xx-tags__title">
-                    Облако тэгов
-                  </div>
-                  <ul className="xx-tags__list">
-                    <li className="xx-tags__item">
-                      <button
-                        className="xx-btn-unstyled"
-                        onClick={() => { this.setState({ noteId: "Орден св. Георгия III степени" }) }}
-                      >
-                        Орден св. Георгия III степени
-                      </button>
-                    </li>
-                    <li className="xx-tags__item">
-                      <button
-                        className="xx-btn-unstyled"
-                        onClick={() => { this.setState({ noteId: "Конец войны" }) }}
-                      >
-                        Конец войны
-                      </button>
-                    </li>
-                  </ul>
+          <div className="xx-body">
+            <aside className="xx-body__sidebar">
+              <div className="xx-tags">
+                <div className="xx-tags__title">
+                  Облако тэгов
                 </div>
-              </aside>
-              <div className="xx-body__content">
-                <div className="xx-game-header">
-                  <div className="xx-game-header__year">
-                    { year }
-                  </div>
-                  <div className="xx-game-header__row">
-                    <div className="xx-game-header__age">
-                      { age }
-                    </div>
-                    <Badge
-                      className="xx-game-header__badge"
-                      currentRank={currentRank}
+                <ul className="xx-tags__list">
+                  <li className="xx-tags__item">
+                    <button
+                      className="xx-btn-unstyled"
+                      onClick={() => { openModal(() => this.setState({ noteId: "Орден св. Георгия III степени" })) }}
                     >
-                      <div className="xx-badge__ribbon">
-                        <button
-                          className="xx-btn-unstyled"
-                          onClick={() => this.setState({showTable: true})}
-                        >
-                          Табель о рангах
-                        </button>
-                      </div>
-                    </Badge>
-
-                    <div className="xx-game-header__rank">
-                      {
-                        currentRank &&
-                        <div className="xx-game-header__rank-title">{currentRank.text}</div>
-                      }
-                      <div className="xx-game-header__rank-separator xx-separator" />
-                      {
-                        currentRank && currentRank.type &&
-                        <div className="xx-game-header__rank-type">{rankTypes[currentRank.type]}</div>
-                      }
+                      Орден св. Георгия III степени
+                    </button>
+                  </li>
+                  <li className="xx-tags__item">
+                    <button
+                      className="xx-btn-unstyled"
+                      onClick={() => { openModal(() => this.setState({ noteId: "Конец войны" })) }}
+                    >
+                      Конец войны
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </aside>
+            <div className="xx-body__content">
+              <div className="xx-game-header">
+                <div className="xx-game-header__year">
+                  { year }
+                </div>
+                <div className="xx-game-header__row">
+                  <div className="xx-game-header__age">
+                    { age }
+                  </div>
+                  <Badge
+                    className="xx-game-header__badge"
+                    currentRank={currentRank}
+                  >
+                    <div className="xx-badge__ribbon">
+                      <button
+                        className="xx-btn-unstyled"
+                        onClick={() => openModal(() => this.setState({showTable: true}))}
+                      >
+                        Табель о рангах
+                      </button>
                     </div>
+                  </Badge>
+
+                  <div className="xx-game-header__rank">
+                    {
+                      currentRank &&
+                      <div className="xx-game-header__rank-title">{currentRank.text}</div>
+                    }
+                    <div className="xx-game-header__rank-separator xx-separator" />
+                    {
+                      currentRank && currentRank.type &&
+                      <div className="xx-game-header__rank-type">{rankTypes[currentRank.type]}</div>
+                    }
                   </div>
                 </div>
-                <div className="xx-paragraph">
-                  { text }
-                </div>
-                {
-                  final &&
-                  <button className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c" onClick={() => nextStage()}>
-                    <i className="xx-icon xx-icon--arrow" />
-                  </button>
-                }
-                {
-                  options &&
-                  (
-                    options.length === 1 ?
-                      <button
-                        className="xx-btn xx-btn--inverted xx-mt_40 xx-as_c"
-                        onClick={() => this.showLevelModal(() => nextState(0))}
-                      >
-                        <i className="xx-icon xx-icon--arrow" />
-                      </button>
-                      :
-                      <div className="xx-options">
-                        <div className="xx-options__title">Выберите, что случится дальше</div>
-                        <div className="xx-options__body">
-                          {
-                            options.map(({ text }, index) =>
-                              <div className="xx-options__item" key={index}>
-                                <div>
-                                  <span className="xx-letter">{ index === 0 ? 'а' : 'б' }</span>
-                                  { text }
-                                  <button
-                                    className="xx-btn xx-btn--inverted xx-options__button"
-                                    onClick={() => this.showLevelModal(() => nextState(index))}
-                                  >
-                                    <i className="xx-icon xx-icon--arrow" />
-                                  </button>
-                                </div>
-                              </div>
-                            )
-                          }
-                        </div>
-                      </div>
-                  )
-                }
               </div>
+              <div className="xx-paragraph">
+                { text }
+              </div>
+              {
+                final &&
+                <button
+                  className="xx-btn xx-btn--inverted xx-options__button xx-mt_40 xx-as_c"
+                  onClick={() => nextStage()}
+                >
+                  <i className="xx-icon xx-icon--arrow" />
+                </button>
+              }
+              {
+                options &&
+                (
+                  options.length === 1 ?
+                    <button
+                      className="xx-btn xx-btn--inverted xx-options__button xx-mt_40 xx-as_c"
+                      onClick={() => this.showLevelModal(() => nextState(0))}
+                    >
+                      <i className="xx-icon xx-icon--arrow" />
+                    </button>
+                    :
+                    <div className="xx-options">
+                      <div className="xx-options__title">Выберите, что случится дальше</div>
+                      <div className="xx-options__body">
+                        {
+                          options.map(({ text }, index) =>
+                            <div className="xx-options__item" key={index}>
+                              <div>
+                                <span className="xx-letter">{ index === 0 ? 'а' : 'б' }</span>
+                                { text }
+                                <button
+                                  className="xx-btn xx-btn--inverted xx-options__button"
+                                  onClick={() => this.showLevelModal(() => nextState(index))}
+                                >
+                                  <i className="xx-icon xx-icon--arrow" />
+                                </button>
+                              </div>
+                            </div>
+                          )
+                        }
+                      </div>
+                    </div>
+                )
+              }
             </div>
-            }
-            {
-              this.state.showTable &&
-              <Table
-                currentRank={currentRank}
-                onClose={() => this.setState({ showTable: false })}
-              />
-            }
+          </div>
         </div>
+        {
+          this.state.showTable &&
+          <Table
+            currentRank={currentRank}
+            onClose={() => closeModal(() => this.setState({ showTable: false }))}
+          />
+        }
         {
           this.state.noteId &&
           <Note
             noteId={this.state.noteId}
-            onClose={() => this.setState({ noteId: null })}
+            onClose={() => closeModal(() => this.setState({ noteId: null }))}
           />
         }
         {
           this.state.showLevelModal &&
           <LevelNotification
-            onClose={() => this.setState({ showLevelModal: false })}
+            onClose={() => closeModal(() => this.setState({ showLevelModal: false }))}
             isLoading={this.state.isLoading}
             currentRank={currentRank}
             transitionText={transitionText}

@@ -22,7 +22,7 @@ const Rules = ({ action }) => (
           <li className="xx-rules__item">Не торопитесь, времени достаточно — 120 секунд. Зато каждый неправильный ответ лишит вас 30 секунд — будьте аккуратней с кликами!</li>
         </ul>
       </div>
-      <button className="xx-btn" onClick={action}>Начать игру</button>
+      <button className="xx-btn xx-btn--big" onClick={action}>Начать игру</button>
     </div>
   </div>
 );

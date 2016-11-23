@@ -21,11 +21,11 @@ const Intro = ({ action }) => (
           <div className="xx-columns">
             <div className="xx-columns__item">
               <div className="xx-small-title">Персонаж</div>
-              <p className="xx-paragraph"><strong>Пётр Алексеевич Хрюшкин</strong></p>
+              <div className="xx-paragraph"><strong>Пётр Алексеевич Хрюшкин</strong></div>
             </div>
             <div className="xx-columns__item">
               <div className="xx-small-title">Год рождения</div>
-              <p className="xx-paragraph">1735 или 1736 — <i>сам точно не помнит</i></p>
+              <div className="xx-paragraph">1735 или 1736 — <i>сам точно не помнит</i></div>
             </div>
           </div>
           <div className="xx-separator" />
@@ -41,7 +41,7 @@ const Intro = ({ action }) => (
           <div className="xx-columns">
             <div className="xx-columns__item">
               <div className="xx-small-title">Владение</div>
-              <p className="xx-paragraph">Сельцо Хрюшкино Муромского уезда Владимирской провинции Московской губернии</p>
+              <div className="xx-paragraph">Сельцо Хрюшкино Муромского уезда Владимирской провинции Московской губернии</div>
             </div>
             <div className="xx-columns__item">
               <div className="xx-small-title">Состояние</div>
@@ -51,7 +51,7 @@ const Intro = ({ action }) => (
           <div className="xx-separator" />
           <div className="xx-as_c xx-my_20">
             <button
-              className="xx-btn xx-btn--inverted"
+              className="xx-btn xx-btn--big xx-btn--inverted"
               onClick={action}
             >
               Начать жизнь
