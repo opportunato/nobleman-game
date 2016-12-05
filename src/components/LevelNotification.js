@@ -21,7 +21,7 @@ const LevelNotification = ({ onClose, isLoading, currentRank, transitionText }) 
             currentRank={currentRank}
           />
           <div className="xx-level__rank">
-            {currentRank ? currentRank.text : "Без ранга"}
+            {currentRank ? (currentRank.displayText || currentRank.text) : "Без ранга"}
           </div>
           <ul className="xx-level__rank-types">
             <li className={(currentRank && currentRank.type === 'citizen') ? 'xx-level__rank-type-selected' : ''}>Гражданский</li>
@@ -30,7 +30,7 @@ const LevelNotification = ({ onClose, isLoading, currentRank, transitionText }) 
           </ul>
           <div className="xx-level__separator xx-separator" />
           <button
-            className="xx-btn xx-btn--inverted xx-options__button xx-no-hover"
+            className="xx-btn xx-btn--inverted xx-options__button"
             onClick={() => onClose()}
           >
             <i className="xx-icon xx-icon--arrow" />

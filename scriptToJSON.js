@@ -74,7 +74,8 @@ fs.readFile('./script.csv', (err, data) => {
         options: getOptions(state[2]),
         rank: getRankId(state[3].split('\n')[0].toLowerCase()),
         final: isFinal(state[2]),
-        transitionText: state[4]
+        transitionText: state[4],
+        notes: state[5].replace(/\(?картинка\??\)?/ig, '').split('\n').map(string => string.trim()).filter(string => !!string)
       };
     });
 

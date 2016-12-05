@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { nextGameState } from '../../../actions/gameStateActions';
 import { nextStage } from '../../../actions/stageActions';
 import ranks from '../../../ranks.json';
+import allNotes from '../../../notes.json';
 import Table from '../../../components/table/Table';
 import Note from '../../../components/note/Note';
 import LevelNotification from '../../../components/LevelNotification';
@@ -33,6 +34,31 @@ const closeModal = (callback) => {
   callback();
 };
 
+class Notice extends React.Component {
+  state = {
+    isOpened: false
+  };
+
+  render() {
+    const {text} = this.props;
+    const {isOpened} = this.state;
+    return (
+      <span className="xx-notice">
+        <button
+          className={"xx-btn-unstyled xx-notice__button" + (isOpened ? ' xx-notice__button--opened' : "")}
+          onClick={() => this.setState({isOpened: !this.state.isOpened})}
+        >
+          &nbsp;
+        </button>
+        <span className={"xx-notice__balloon xx-notice__balloon--flipped" + (isOpened ? ' xx-notice__balloon--opened' : "")}>
+          {text}
+        </span>
+      </span>
+    );
+  }
+}
+
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -52,7 +78,9 @@ class Game extends React.Component {
       if (newGameState.transitionText) {
         this.setState({ isLoading: false });
       } else {
-        this.setState({ isLoading: false, showLevelModal: false });
+        closeModal(() => {
+          this.setState({ showLevelModal: false });
+        });
       }
     }
   }
@@ -69,8 +97,25 @@ class Game extends React.Component {
     });
   };
 
+  // only works if text has one notice
+  convertNotices = (text) => {
+    const re = /\[note=(.*)\]/;
+    const match = text.match(re);
+    if (match) {
+      const strings = text.split(re)
+      return (
+        <div>
+          {strings[0]}
+          <Notice text={strings[1]} />
+          {strings[2]}
+        </div>
+      )
+    }
+    return text;
+  };
+
   render() {
-    const { gameState: { rank: rankId, year, age, text, final, options, transitionText }, nextState, nextStage } = this.props;
+    const { gameState: { rank: rankId, year, age, text, final, options, transitionText, notes }, nextState, nextStage } = this.props;
     const currentRank = ranks.find(rank => rank.id === rankId);
 
     return (
@@ -87,26 +132,37 @@ class Game extends React.Component {
           <div className="xx-body">
             <aside className="xx-body__sidebar">
               <div className="xx-tags">
-                <div className="xx-tags__title">
-                  Облако тэгов
-                </div>
+                {
+                  notes.length > 0 &&
+                  <div className="xx-tags__title">
+                    Примечания
+                  </div>
+                }
                 <ul className="xx-tags__list">
-                  <li className="xx-tags__item">
-                    <button
-                      className="xx-btn-unstyled"
-                      onClick={() => { openModal(() => this.setState({ noteId: "Орден св. Георгия III степени" })) }}
-                    >
-                      Орден св. Георгия III степени
-                    </button>
-                  </li>
-                  <li className="xx-tags__item">
-                    <button
-                      className="xx-btn-unstyled"
-                      onClick={() => { openModal(() => this.setState({ noteId: "Конец войны" })) }}
-                    >
-                      Конец войны
-                    </button>
-                  </li>
+                  {
+                    notes.map(noteTitle => {
+                      const foundNote = allNotes.find(note => note.title == noteTitle);
+                      const hasImage = foundNote && !!foundNote.img;
+
+                      return (
+                        <li
+                          key={noteTitle}
+                          className={"xx-tags__item" + (hasImage ? ' xx-tags__item--image' : '')}
+                          style={{
+                            backgroundImage: (hasImage ? `url(https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/notes/${foundNote.img.name}.jpg)` : null)
+                          }}
+                        >
+                          <button
+                            className="xx-btn-unstyled"
+                            onClick={() => { openModal(() => this.setState({
+                              showNote: true, noteId: noteTitle })) }}
+                          >
+                            {noteTitle}
+                          </button>
+                        </li>
+                      );
+                    })
+                  }
                 </ul>
               </div>
             </aside>
@@ -136,7 +192,7 @@ class Game extends React.Component {
                   <div className="xx-game-header__rank">
                     {
                       currentRank &&
-                      <div className="xx-game-header__rank-title">{currentRank.text}</div>
+                      <div className="xx-game-header__rank-title">{currentRank.displayText || currentRank.text}</div>
                     }
                     <div className="xx-game-header__rank-separator xx-separator" />
                     {
@@ -147,7 +203,7 @@ class Game extends React.Component {
                 </div>
               </div>
               <div className="xx-paragraph">
-                { text }
+                { this.convertNotices(text) }
               </div>
               {
                 final &&
@@ -196,27 +252,30 @@ class Game extends React.Component {
           </div>
         </div>
         {
-          this.state.showTable &&
-          <Table
-            currentRank={currentRank}
-            onClose={() => closeModal(() => this.setState({ showTable: false }))}
-          />
+          <div className={`xx-opacity-transition${this.state.showTable ? ' xx-opacity-transition--visible' : ''}`}>
+            <Table
+              currentRank={currentRank}
+              onClose={() => closeModal(() => this.setState({ showTable: false }))}
+            />
+          </div>
         }
         {
-          this.state.noteId &&
-          <Note
-            noteId={this.state.noteId}
-            onClose={() => closeModal(() => this.setState({ noteId: null }))}
-          />
+          <div className={`xx-opacity-transition${this.state.showNote ? ' xx-opacity-transition--visible' : ''}`}>
+            <Note
+              noteId={this.state.noteId}
+              onClose={() => closeModal(() => this.setState({ showNote: false }))}
+            />
+          </div>
         }
         {
-          this.state.showLevelModal &&
-          <LevelNotification
-            onClose={() => closeModal(() => this.setState({ showLevelModal: false }))}
-            isLoading={this.state.isLoading}
-            currentRank={currentRank}
-            transitionText={transitionText}
-          />
+          <div className={`xx-opacity-transition${this.state.showLevelModal ? ' xx-opacity-transition--visible' : ''}`}>
+            <LevelNotification
+              onClose={() => closeModal(() => this.setState({ showLevelModal: false }))}
+              isLoading={this.state.isLoading}
+              currentRank={currentRank}
+              transitionText={transitionText}
+            />
+          </div>
         }
       </div>
     );

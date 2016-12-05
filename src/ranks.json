@@ -229,6 +229,7 @@
   {
     "id": "guard_praproshik",
     "text": "Прапорщик",
+    "displayText": "Прапорщик гвардии",
     "level": 12,
     "type": "military",
     "militaryType": "guard"
@@ -236,6 +237,7 @@
   {
     "id": "guard_podporuchik",
     "text": "Подпоручик",
+    "displayText": "Подпоручик гвардии",
     "level": 10,
     "type": "military",
     "militaryType": "guard"
@@ -243,6 +245,7 @@
   {
     "id": "guard_poruchik",
     "text": "Поручик",
+    "displayText": "Поручик гвардии",
     "level": 9,
     "type": "military",
     "militaryType": "guard"
@@ -250,6 +253,7 @@
   {
     "id": "guard_captain_poruchik",
     "text": "Капитан-поручик",
+    "displayText": "Капитан-поручик гвардии",
     "level": 8,
     "type": "military",
     "militaryType": "guard"
@@ -257,6 +261,7 @@
   {
     "id": "guard_captain",
     "text": "Капитан",
+    "displayText": "Капитан гвардии",
     "level": 7,
     "type": "military",
     "militaryType": "guard"
@@ -264,6 +269,7 @@
   {
     "id": "guard_second_major",
     "text": "Секунд-майор",
+    "displayText": "Секунд-майор гвардии",
     "level": 6,
     "type": "military",
     "militaryType": "guard"
@@ -271,6 +277,7 @@
   {
     "id": "guard_premier_major",
     "text": "Премьер-майор",
+    "displayText": "Премьер-майор гвардии",
     "level": 5,
     "type": "military",
     "militaryType": "guard"
@@ -278,6 +285,7 @@
   {
     "id": "guard_podpolkovnik",
     "text": "Подполковник",
+    "displayText": "Подполковник гвардии",
     "level": 4,
     "type": "military",
     "militaryType": "guard"
@@ -285,6 +293,7 @@
   {
     "id": "guard_polkovnik",
     "text": "Полковник",
+    "displayText": "Полковник гвардии",
     "level": 3,
     "type": "military",
     "militaryType": "guard"
@@ -448,6 +457,12 @@
   {
     "id": "ober-kamerger",
     "text": "Обер-камергер",
+    "level": 4,
+    "type": "court"
+  },
+  {
+    "id": "kamerger",
+    "text": "Камергер",
     "level": 4,
     "type": "court"
   },

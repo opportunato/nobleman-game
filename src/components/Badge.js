@@ -56,24 +56,12 @@ const EmptyBadgeIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="147"
     height="166"
-    viewBox="-1 0 146 166"
+    viewBox="28 -58 144 166"
   >
-    <g>
-      <g>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="0" y1="41.5" x2="0" y2="41.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,4.8885,0,0,0,0" x1="4.2" y1="39.1" x2="72" y2="0"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="72" y1="0" x2="72" y2="0"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,4.8885,0,0,0,0" x1="76.2" y1="2.4" x2="144" y2="41.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="144" y1="41.5" x2="144" y2="41.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,5,0,0,0,0" x1="144" y1="46.5" x2="144" y2="124.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="144" y1="124.5" x2="144" y2="124.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,4.8885,0,0,0,0" x1="139.8" y1="126.9" x2="72" y2="166"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="72" y1="166" x2="72" y2="166"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,4.8885,0,0,0,0" x1="67.8" y1="163.6" x2="0" y2="124.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" x1="0" y1="124.5" x2="0" y2="124.5"/>
-        <line fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,5,0,0,0,0" x1="0" y1="119.5" x2="0" y2="41.5"/>
-      </g>
-    </g>
+    <polygon fill="none" stroke="#CEBCA5" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" strokeDasharray="0,4.8885,0,0,0,0" points="
+	28,-16.5 100,-58 172,-16.5 172,66.5 100,108 28,66.5 "/>
+    <line fill="none" stroke="#CEBCA5" strokeMiterlimit="10" x1="76" y1="1" x2="124" y2="49"/>
+    <line fill="none" stroke="#CEBCA5" strokeMiterlimit="10" x1="124" y1="1" x2="76" y2="49"/>
   </svg>
 );
 

@@ -6,7 +6,8 @@
     "start": "webpack-dev-server",
     "build": "webpack -p",
     "test": "mocha --require babel-polyfill --compilers js:babel-register",
-    "compile_script": "babel-node --presets es2015 scriptToJSON.js"
+    "compile_script": "babel-node --presets es2015 scriptToJSON.js",
+    "compile_notes": "babel-node --presets es2015 notesToJSON.js"
   },
   "repository": {
     "url": "https://github.com/opportunato/js-stack-playground.git",
