@@ -7,7 +7,8 @@
     "build": "webpack -p",
     "test": "mocha --require babel-polyfill --compilers js:babel-register",
     "compile_script": "babel-node --presets es2015 scriptToJSON.js",
-    "compile_notes": "babel-node --presets es2015 notesToJSON.js"
+    "compile_notes": "babel-node --presets es2015 notesToJSON.js",
+    "typograph": "babel-node --presets es2015 typographJSON.js"
   },
   "repository": {
     "url": "https://github.com/opportunato/js-stack-playground.git",
@@ -60,6 +61,7 @@
     "sass-loader": "^4.0.2",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
+    "superagent": "^3.1.0",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-server": "2.1.0-beta.10"
   }

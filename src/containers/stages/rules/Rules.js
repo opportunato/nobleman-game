@@ -11,16 +11,17 @@ const Rules = ({ action }) => (
     <div className="xx-container">
       <a href="" className="xx-chapter">Петр I. Модернизация</a>
       <div className="xx-title">Жизнь дворянина.<br/>Табель о рангах</div>
-      <div className="xx-lead">Табель о рангах, возможность получить дворянство по выслуге — и как к этому относились древние дворянские роды</div>
+      <div
+        className="xx-lead"
+        dangerouslySetInnerHTML={{__html: "Табель о&nbsp;рангах, возможность получить дворянство по&nbsp;выслуге&nbsp;— и&nbsp;как к&nbsp;этому относились древние дворянские роды" }}
+      />
       <a className="xx-btn xx-btn--small" href="http://arzamas.academy/materials/1142" target="_blank">Для учителя</a>
       <div className="xx-rules">
-        <div className="xx-rules__header">Правила игры:</div>
-        <ul className="xx-rules__list">
-          <li className="xx-rules__item">Разглядывайте картины, ищите или считайте детали них и отвечайте на вопросы. Чем больше правильных ответов, тем лучше</li>
-          <li className="xx-rules__item">Не торопитесь, времени достаточно — 120 секунд. Зато каждый неправильный ответ лишит вас 30 секунд — будьте аккуратней с кликами!</li>
-          <li className="xx-rules__item">Разглядывайте картины, ищите или считайте детали них и отвечайте на вопросы. Чем больше правильных ответов, тем лучше</li>
-          <li className="xx-rules__item">Не торопитесь, времени достаточно — 120 секунд. Зато каждый неправильный ответ лишит вас 30 секунд — будьте аккуратней с кликами!</li>
-        </ul>
+        <div className="xx-rules__header">Путь русского дворянина:</div>
+        <div
+          className="xx-rules__list"
+          dangerouslySetInnerHTML={{__html: "В&nbsp;ваших руках судьба и&nbsp;карьера русского дворянина. Вы&nbsp;можете провести его через волнения, дворцовые перевороты и&nbsp;войны XVIII века и&nbsp;довести до&nbsp;вершины Табели о&nbsp;рангах&nbsp;— а&nbsp;можете отправить его на&nbsp;каторгу или сделать разбойником. Вам нужно выбрать, что случится с&nbsp;героем в&nbsp;той или иной ситуации&nbsp;— и&nbsp;узнать, к&nbsp;чему это приведет." }}
+        />
       </div>
       <button className="xx-btn xx-btn--big" onClick={action}>Начать игру</button>
     </div>

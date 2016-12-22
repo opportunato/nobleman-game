@@ -50,8 +50,10 @@ class Notice extends React.Component {
         >
           &nbsp;
         </button>
-        <span className={"xx-notice__balloon xx-notice__balloon--flipped" + (isOpened ? ' xx-notice__balloon--opened' : "")}>
-          {text}
+        <span
+          className={"xx-notice__balloon xx-notice__balloon--flipped" + (isOpened ? ' xx-notice__balloon--opened' : "")}
+          dangerouslySetInnerHTML={{__html: text}}
+        >
         </span>
       </span>
     );
@@ -102,14 +104,16 @@ class Game extends React.Component {
     const re = /\[note=(.*)\]/;
     const match = text.match(re);
     if (match) {
-      const strings = text.split(re)
+      const strings = text.split(re);
       return (
         <div>
-          {strings[0]}
+          <span dangerouslySetInnerHTML={{__html: strings[0]}} />
           <Notice text={strings[1]} />
-          {strings[2]}
+          <span dangerouslySetInnerHTML={{__html: strings[2]}} />
         </div>
       )
+    } else {
+      text = <div dangerouslySetInnerHTML={{__html: text}} />
     }
     return text;
   };
@@ -233,7 +237,7 @@ class Game extends React.Component {
                             <div className="xx-options__item" key={index}>
                               <div>
                                 <span className="xx-letter">{ index === 0 ? 'а' : 'б' }</span>
-                                { text }
+                                <span dangerouslySetInnerHTML={{__html: text}} />
                                 <button
                                   className="xx-btn xx-btn--inverted xx-options__button"
                                   onClick={() => this.showLevelModal(() => nextState(index))}

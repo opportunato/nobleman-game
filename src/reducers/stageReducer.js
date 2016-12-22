@@ -11,7 +11,7 @@ export const nextStages = {
   [STAGE_GAME]: STAGE_SHARE,
 };
 
-const initialState = STAGE_GAME;
+const initialState = STAGE_RULES;
 
 const stageReducer = (state = initialState, action) => {
   switch (action.type) {

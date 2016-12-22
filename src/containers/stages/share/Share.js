@@ -1,4 +1,5 @@
 import React from 'react';
+import ShareButtons from '../../../components/ShareButtons';
 import { connect } from 'react-redux';
 import { restart } from '../../../actions/stageActions';
 
@@ -12,11 +13,11 @@ const mapStateToProps = state => ({
 
 const shareLink = 'http://arzamas.academy/results/1200';
 
-const texts = {
-  1: "Я помог русскому дворянину прожить ничем не примечательную скучную жизнь",
+export const TEXTS = {
+  1: "Я помог русскому дворянину прожить интересную жизнь, но не достичь высот",
   2: "Я довел русского дворянина до каторги и преждевременной смерти",
   3: "Я помог русскому дворянину стать героем войны и счастливым семьянином",
-  4: "Я помог русскому дворянину разбогатеть, но не достигнуть карьерных высот",
+  4: "Я помог русскому дворянину разбогатеть, но не прославиться",
   5: "Я преждевременно оборвал жизнь и карьеру русского дворянина",
   6: "Я помог русскому дворянину стать прославленным военачальником",
   7: "Я возвел русского дворянина на вершину придворной карьеры"
@@ -35,30 +36,16 @@ const Share = ({ gameState, action }) => (
         </div>
         <div className="xx-result__info">
           <div className="xx-result__text">
-            {texts[gameState.resultId]}
+            {TEXTS[gameState.resultId]}
           </div>
 
           <div className="xx-result__separator xx-separator"></div>
 
-          <div className="xx-share">
-            <div className="xx-share__title">
-              Поделиться в соцсети:
-            </div>
-            <ul className="xx-share__list">
-              <li className="social social-vk">
-                <a href="" title="Поделиться в VK" />
-              </li>
-              <li className="social social-fb">
-                <a href="" title="Поделиться в Facebook" />
-              </li>
-              <li className="social social-od">
-                <a href="" />
-              </li>
-              <li className="social social-tw">
-                <a href={`https://twitter.com/intent/tweet?text=${texts[gameState.resultId]}&original_referer=${shareLink}&url=${shareLink}`} title="Поделиться в Twitter" />
-              </li>
-            </ul>
-          </div>
+          <ShareButtons
+            shareLink = {shareLink}
+            text = {TEXTS[gameState.resultId]}
+            imgId = "share-photo"
+          />
 
           <button className="xx-btn xx-btn--inverted xx-result__replay" onClick={action}>
             Сыграть еще раз

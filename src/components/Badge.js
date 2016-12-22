@@ -87,7 +87,10 @@ const Badge = ({ className, currentRank, children }) => {
       }
       {
         currentRank && !currentRank.level &&
-        <div className="xx-badge__placeholder">Ниже табели о рангах</div>
+        <div
+          className="xx-badge__placeholder"
+          dangerouslySetInnerHTML={{__html: "Ниже табели о&nbsp;рангах"}}
+        />
       }
       { children }
     </div>

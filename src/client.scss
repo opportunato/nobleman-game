@@ -155,7 +155,6 @@ div.xx-article {
 
     margin-bottom: 15px;
     border: 1px solid $white-color;
-    height: 60px;
     width: 100%;
 
     font: 15px $serif;
@@ -165,20 +164,20 @@ div.xx-article {
       opacity: 0.6;
     }
 
+    > button {
+      width: 100%;
+      min-height: 60px;
+      padding: 15px 10px;
+    }
+
     &--image {
-      height: 95px;
       background-position: center;
       background-size: cover;
 
       > button {
+        min-height: 95px;
         background-color: rgba(0, 0, 0, 0.5);
       }
-    }
-
-    > button {
-      width: 100%;
-      height: 100%;
-      padding: 15px;
     }
   }
 }
@@ -453,7 +452,7 @@ div.xx-article {
     content: '';
 
     position: absolute;
-    left: 0; top: 0;
+    left: -4px; top: 0;
     right: 8px; bottom: 0;
 
     background-color: $select-color;
@@ -616,14 +615,17 @@ div.xx-article {
   color: $black-color;
 
   &__title {
-    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
 
     font: bold 25px $sans;
   }
 
   &__img {
     border-bottom: 1px solid #e5e5e5;
-    margin: 43px 0 40px;
+
+    padding-top: 20px;
+    margin: 15px auto 40px;
   }
 
   &__caption {
@@ -641,6 +643,7 @@ div.xx-article {
   }
 
   &__text {
+    margin-top: 20px;
     color: #4c4c4c;
     font: 17px/26px $serif;
   }
@@ -664,7 +667,7 @@ div.xx-article {
     align-items: center;
     justify-content: center;
 
-    padding: 130px;
+    padding: 130px 0;
     min-height: 100%;
     width: 100%;
 
