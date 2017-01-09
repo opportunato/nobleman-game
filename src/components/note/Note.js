@@ -1,5 +1,5 @@
 import React from 'react';
-import notes from '../../notes.json';
+import notes from 'notes';
 import Modal from '../modal/Modal';
 
 const getImgDimensions = (width, height) => {

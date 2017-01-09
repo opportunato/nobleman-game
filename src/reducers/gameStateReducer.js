@@ -1,6 +1,6 @@
 import { NEXT_GAME_STATE } from '../actions/gameStateActions';
 import { RESTART } from '../actions/stageActions';
-import script from '../script.json';
+import script from 'script';
 
 const START_STATE_ID = '1';
 
@@ -16,7 +16,7 @@ export const getState = (id) => {
   if (!script[id]) {
     throw new Error(`There is no state in script with id ${JSON.stringify(id)}`);
   }
-  return ({ id, ...script[id] });
+  return ({ id, ...script[id], oldState: {} });
 };
 
 export const getInitialState = () =>
@@ -30,6 +30,7 @@ const gameStateReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         ...getState(getNextStateId(state, payload.optionIndex)),
+        oldState: state
       };
     case RESTART:
       return initialState;

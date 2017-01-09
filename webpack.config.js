@@ -22,6 +22,10 @@ module.exports = {
       allChunks: true
     })
   ],
+  externals: {
+    "script": "script",
+    "notes": "notes"
+  },
   module: {
     rules: [
       {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { nextGameState } from '../../../actions/gameStateActions';
 import { nextStage } from '../../../actions/stageActions';
 import ranks from '../../../ranks.json';
-import allNotes from '../../../notes.json';
+import allNotes from 'notes';
 import Table from '../../../components/table/Table';
 import Note from '../../../components/note/Note';
 import LevelNotification from '../../../components/LevelNotification';
@@ -69,7 +69,8 @@ class Game extends React.Component {
       showTable: false,
       noteId: null,
       showLevelModal: false,
-      isLoading: false
+      isLoading: false,
+      hasTransitioned: false
     };
   }
 
@@ -77,13 +78,7 @@ class Game extends React.Component {
     const {gameState:newGameState} = newProps;
 
     if (newGameState.id !== this.props.gameState.id) {
-      if (newGameState.transitionText) {
-        this.setState({ isLoading: false });
-      } else {
-        closeModal(() => {
-          this.setState({ showLevelModal: false });
-        });
-      }
+      this.setState({ hasTransitioned: false });
     }
   }
 
@@ -120,6 +115,8 @@ class Game extends React.Component {
 
   render() {
     const { gameState: { rank: rankId, year, age, text, final, options, transitionText, notes }, nextState, nextStage } = this.props;
+    const oldRank = ranks.find(rank => rank.id === this.props.gameState.oldState.rank);
+    const { hasTransitioned } = this.state;
     const currentRank = ranks.find(rank => rank.id === rankId);
 
     return (
@@ -181,7 +178,7 @@ class Game extends React.Component {
                   </div>
                   <Badge
                     className="xx-game-header__badge"
-                    currentRank={currentRank}
+                    currentRank={ hasTransitioned ? currentRank : oldRank }
                   >
                     <div className="xx-badge__ribbon">
                       <button
@@ -192,18 +189,21 @@ class Game extends React.Component {
                       </button>
                     </div>
                   </Badge>
-
-                  <div className="xx-game-header__rank">
-                    {
-                      currentRank &&
-                      <div className="xx-game-header__rank-title">{currentRank.displayText || currentRank.text}</div>
-                    }
-                    <div className="xx-game-header__rank-separator xx-separator" />
-                    {
-                      currentRank && currentRank.type &&
-                      <div className="xx-game-header__rank-type">{rankTypes[currentRank.type]}</div>
-                    }
-                  </div>
+                  {
+                    (rank => (
+                      <div className="xx-game-header__rank">
+                        {
+                          rank &&
+                          <div className="xx-game-header__rank-title">{rank.displayText || rank.text}</div>
+                        }
+                          <div className="xx-game-header__rank-separator xx-separator" />
+                        {
+                          rank && rank.type &&
+                          <div className="xx-game-header__rank-type">{rankTypes[rank.type]}</div>
+                        }
+                      </div>
+                    ))(hasTransitioned ? currentRank : oldRank)
+                  }
                 </div>
               </div>
               <div className="xx-paragraph">
@@ -221,10 +221,18 @@ class Game extends React.Component {
               {
                 options &&
                 (
-                  options.length === 1 ?
+                  (options.length === 1 || (!hasTransitioned && transitionText)) ?
                     <button
                       className="xx-btn xx-btn--inverted xx-options__button xx-mt_40 xx-as_c"
-                      onClick={() => this.showLevelModal(() => nextState(0))}
+                      onClick={() => this.showLevelModal(() => {
+                        if (transitionText) {
+                          this.setState({ isLoading: false });
+                        } else {
+                          closeModal(() => {
+                            this.setState({ showLevelModal: false, hasTransitioned: true });
+                          });
+                        }
+                      })}
                     >
                       <i className="xx-icon xx-icon--arrow" />
                     </button>
@@ -240,7 +248,12 @@ class Game extends React.Component {
                                 <span dangerouslySetInnerHTML={{__html: text}} />
                                 <button
                                   className="xx-btn xx-btn--inverted xx-options__button"
-                                  onClick={() => this.showLevelModal(() => nextState(index))}
+                                  onClick={() => this.showLevelModal(() => {
+                                    closeModal(() => {
+                                      this.setState({ showLevelModal: false });
+                                      nextState(index);
+                                    });
+                                  })}
                                 >
                                   <i className="xx-icon xx-icon--arrow" />
                                 </button>
@@ -274,7 +287,12 @@ class Game extends React.Component {
         {
           <div className={`xx-opacity-transition${this.state.showLevelModal ? ' xx-opacity-transition--visible' : ''}`}>
             <LevelNotification
-              onClose={() => closeModal(() => this.setState({ showLevelModal: false }))}
+              onClose={() => closeModal(() => {
+                this.setState({ showLevelModal: false, hasTransitioned: true });
+                if (options.length === 1) {
+                  nextState(0);
+                }
+              })}
               isLoading={this.state.isLoading}
               currentRank={currentRank}
               transitionText={transitionText}
