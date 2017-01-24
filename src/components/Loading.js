@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CX = 1118;
-const CY = 56;
+const CX = 68;
+const CY = 68;
 const MINUTE_RADIUS = 50;
 const HOUR_RADIUS = 50;
 
@@ -44,13 +44,13 @@ class Loading extends React.Component {
       <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
-        width="144"
-        height="166"
-        viewBox="1044.5 -28.5 144 166"
+        width="136"
+        height="136"
+        viewBox="0 0 136 136"
       >
-        <polygon fill="#FFFFFF" points="1046,14.5 1118,-27 1190,14.5 1190,97.5 1118,139 1046,97.5 "/>
-        <line x1={getX(time)} y1={getY(time)} x2="1118" y2="56" stroke="#1A1A1A" strokeWidth="2" height="50"/>
-        <line x1={getX(time, true)} y1={getY(time, true)} x2="1118" y2="56" stroke="#1A1A1A" strokeWidth="2" />
+        <circle fill="#FFFFFF" cx="68" cy="68" r="68" />
+        <line x1={getX(time)} y1={getY(time)} x2="68" y2="68" stroke="#1A1A1A" strokeWidth="2" height="50"/>
+        <line x1={getX(time, true)} y1={getY(time, true)} x2="68" y2="68" stroke="#1A1A1A" strokeWidth="2" />
       </svg>
     );
   }

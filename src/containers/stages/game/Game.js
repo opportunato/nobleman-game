@@ -1,17 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { nextGameState } from '../../../actions/gameStateActions';
-import { nextStage } from '../../../actions/stageActions';
-import ranks from '../../../ranks.json';
-import allNotes from 'notes';
-import Table from '../../../components/table/Table';
-import Note from '../../../components/note/Note';
-import LevelNotification from '../../../components/LevelNotification';
-import Badge from '../../../components/Badge';
+import React from "react";
+import {connect} from "react-redux";
+import {nextGameState} from "../../../actions/gameStateActions";
+import {nextStage} from "../../../actions/stageActions";
+import ranks from "../../../ranks.json";
+import allNotes from "notes";
+import Table from "../../../components/table/Table";
+import Note from "../../../components/note/Note";
+import LevelNotification from "../../../components/LevelNotification";
+import Badge from "../../../components/Badge";
 
 const mapDispatchToProps = dispatch => ({
-  nextState: (index) => { dispatch(nextGameState(index)); },
-  nextStage: () => { dispatch(nextStage()); },
+  nextState: (index) => {
+    dispatch(nextGameState(index));
+  },
+  nextStage: () => {
+    dispatch(nextStage());
+  },
 });
 
 const mapStateToProps = state => ({
@@ -32,6 +36,10 @@ const openModal = (callback) => {
 const closeModal = (callback) => {
   document.body.style.overflow = 'auto';
   callback();
+};
+
+const isRankFromTabel = (currentRank) => {
+  return ranks.find(rank => rank.id === currentRank.id && rank.level)
 };
 
 class Notice extends React.Component {
@@ -60,6 +68,8 @@ class Notice extends React.Component {
   }
 }
 
+const reNotice = /\[notice=([^\[\]\(\)]*)\]/;
+const reNote = /\(([^\[\]\(\)]*)\)\[note='([^\[\]\(\)]*)'\]/;
 
 class Game extends React.Component {
   constructor(props) {
@@ -78,7 +88,7 @@ class Game extends React.Component {
     const {gameState:newGameState} = newProps;
 
     if (newGameState.id !== this.props.gameState.id) {
-      this.setState({ hasTransitioned: false });
+      this.setState({hasTransitioned: false});
     }
   }
 
@@ -94,30 +104,44 @@ class Game extends React.Component {
     });
   };
 
-  // only works if text has one notice
-  convertNotices = (text) => {
-    const re = /\[note=(.*)\]/;
-    const match = text.match(re);
-    if (match) {
-      const strings = text.split(re);
+  convertText = (text) => {
+    const matchNotice = reNotice.exec(text);
+    const matchNote = reNote.exec(text);
+
+    if (matchNotice && (!matchNote || matchNotice.index < matchNote.index)) {
       return (
-        <div>
-          <span dangerouslySetInnerHTML={{__html: strings[0]}} />
-          <Notice text={strings[1]} />
-          <span dangerouslySetInnerHTML={{__html: strings[2]}} />
-        </div>
-      )
+        <span>
+          <span dangerouslySetInnerHTML={{__html: text.substr(0, matchNotice.index)}}/>
+          <Notice text={matchNotice[1]}/>
+          {this.convertText(text.substr(matchNotice.index + matchNotice[0].length))}
+        </span>
+      );
+    } else if (matchNote) {
+      return (
+        <span>
+          <span dangerouslySetInnerHTML={{__html: text.substr(0, matchNote.index)}}/>
+          <a
+             onClick={() => {
+               openModal(() => this.setState({
+                 showNote: true, noteId: matchNote[2]
+               }))
+             }}
+          >
+            {matchNote[1]}
+          </a>
+          {this.convertText(text.substr(matchNote.index + matchNote[0].length))}
+      </span>
+      );
     } else {
-      text = <div dangerouslySetInnerHTML={{__html: text}} />
+      return <span dangerouslySetInnerHTML={{__html: text}}/>
     }
-    return text;
   };
 
   render() {
-    const { gameState: { rank: rankId, year, age, text, final, options, transitionText, notes }, nextState, nextStage } = this.props;
-    const oldRank = ranks.find(rank => rank.id === this.props.gameState.oldState.rank);
-    const { hasTransitioned } = this.state;
-    const currentRank = ranks.find(rank => rank.id === rankId);
+    const {gameState: {rank: rankId, year, age, text, final, options, transitionText, notes}, nextState, nextStage} = this.props;
+    const {hasTransitioned} = this.state;
+    const currentRankId = hasTransitioned ? rankId : this.props.gameState.oldState.rank;
+    const currentRank = ranks.find(rank => rank.id === currentRankId);
 
     return (
       <div className="xx-article">
@@ -155,8 +179,11 @@ class Game extends React.Component {
                         >
                           <button
                             className="xx-btn-unstyled"
-                            onClick={() => { openModal(() => this.setState({
-                              showNote: true, noteId: noteTitle })) }}
+                            onClick={() => {
+                              openModal(() => this.setState({
+                                showNote: true, noteId: noteTitle
+                              }))
+                            }}
                           >
                             {noteTitle}
                           </button>
@@ -174,40 +201,48 @@ class Game extends React.Component {
                 </div>
                 <div className="xx-game-header__row">
                   <div className="xx-game-header__age">
+                    <div className="xx-game-header__title">
+                      Возраст
+                    </div>
                     { age }
                   </div>
                   <Badge
                     className="xx-game-header__badge"
-                    currentRank={ hasTransitioned ? currentRank : oldRank }
+                    currentRank={ currentRank }
                   >
-                    <div className="xx-badge__ribbon">
-                      <button
-                        className="xx-btn-unstyled"
-                        onClick={() => openModal(() => this.setState({showTable: true}))}
-                      >
-                        Табель о рангах
-                      </button>
-                    </div>
+                    {
+                      currentRank && isRankFromTabel(currentRank) &&
+                      <div className="xx-badge__ribbon">
+                        <button
+                          className="xx-btn-unstyled"
+                          onClick={() => openModal(() => this.setState({showTable: true}))}
+                        >
+                          Показать табель о рангах
+                        </button>
+                      </div>
+                    }
                   </Badge>
                   {
                     (rank => (
                       <div className="xx-game-header__rank">
+                        <div className="xx-game-header__title">
+                          Чин
+                        </div>
                         {
                           rank &&
                           <div className="xx-game-header__rank-title">{rank.displayText || rank.text}</div>
                         }
-                          <div className="xx-game-header__rank-separator xx-separator" />
                         {
                           rank && rank.type &&
                           <div className="xx-game-header__rank-type">{rankTypes[rank.type]}</div>
                         }
                       </div>
-                    ))(hasTransitioned ? currentRank : oldRank)
+                    ))(currentRank)
                   }
                 </div>
               </div>
               <div className="xx-paragraph">
-                { this.convertNotices(text) }
+                { text.split('<br /><br />').map((p, i) => <p key={i}>{this.convertText(p)}</p>) }
               </div>
               {
                 final &&
@@ -215,7 +250,7 @@ class Game extends React.Component {
                   className="xx-btn xx-btn--inverted xx-options__button xx-mt_40 xx-as_c"
                   onClick={() => nextStage()}
                 >
-                  <i className="xx-icon xx-icon--arrow" />
+                  <i className="xx-icon xx-icon--arrow"/>
                 </button>
               }
               {
@@ -226,36 +261,38 @@ class Game extends React.Component {
                       className="xx-btn xx-btn--inverted xx-options__button xx-mt_40 xx-as_c"
                       onClick={() => this.showLevelModal(() => {
                         if (transitionText) {
-                          this.setState({ isLoading: false });
+                          this.setState({hasTransitioned: true, isLoading: false});
                         } else {
                           closeModal(() => {
-                            this.setState({ showLevelModal: false, hasTransitioned: true });
+                            this.setState({showLevelModal: false, hasTransitioned: true});
+                            nextState(0);
                           });
                         }
                       })}
                     >
-                      <i className="xx-icon xx-icon--arrow" />
+                      <i className="xx-icon xx-icon--arrow"/>
                     </button>
                     :
                     <div className="xx-options">
                       <div className="xx-options__title">Выберите, что случится дальше</div>
                       <div className="xx-options__body">
                         {
-                          options.map(({ text }, index) =>
+                          options.map(({text}, index) =>
                             <div className="xx-options__item" key={index}>
                               <div>
-                                <span className="xx-letter">{ index === 0 ? 'а' : 'б' }</span>
-                                <span dangerouslySetInnerHTML={{__html: text}} />
+                                <span className="xx-letter">{ index === 0 ? 'а' : <span style={{left: '1px', position: 'relative'}}>б</span> }</span>
+                                {this.convertText(text)}
                                 <button
                                   className="xx-btn xx-btn--inverted xx-options__button"
                                   onClick={() => this.showLevelModal(() => {
+                                    this.setState({hasTransitioned: true});
                                     closeModal(() => {
-                                      this.setState({ showLevelModal: false });
+                                      this.setState({showLevelModal: false});
                                       nextState(index);
                                     });
                                   })}
                                 >
-                                  <i className="xx-icon xx-icon--arrow" />
+                                  <i className="xx-icon xx-icon--arrow"/>
                                 </button>
                               </div>
                             </div>
@@ -272,7 +309,7 @@ class Game extends React.Component {
           <div className={`xx-opacity-transition${this.state.showTable ? ' xx-opacity-transition--visible' : ''}`}>
             <Table
               currentRank={currentRank}
-              onClose={() => closeModal(() => this.setState({ showTable: false }))}
+              onClose={() => closeModal(() => this.setState({showTable: false}))}
             />
           </div>
         }
@@ -280,7 +317,7 @@ class Game extends React.Component {
           <div className={`xx-opacity-transition${this.state.showNote ? ' xx-opacity-transition--visible' : ''}`}>
             <Note
               noteId={this.state.noteId}
-              onClose={() => closeModal(() => this.setState({ showNote: false }))}
+              onClose={() => closeModal(() => this.setState({showNote: false}))}
             />
           </div>
         }
@@ -288,7 +325,7 @@ class Game extends React.Component {
           <div className={`xx-opacity-transition${this.state.showLevelModal ? ' xx-opacity-transition--visible' : ''}`}>
             <LevelNotification
               onClose={() => closeModal(() => {
-                this.setState({ showLevelModal: false, hasTransitioned: true });
+                this.setState({showLevelModal: false});
                 if (options.length === 1) {
                   nextState(0);
                 }
@@ -304,7 +341,7 @@ class Game extends React.Component {
   }
 }
 
-const { func, shape, string, array } = React.PropTypes;
+const {func, shape, string, array} = React.PropTypes;
 
 Game.propTypes = {
   nextState: func.isRequired,

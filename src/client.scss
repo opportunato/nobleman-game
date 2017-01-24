@@ -126,11 +126,17 @@ div.xx-article {
 .xx-paragraph {
   margin: 0;
 
-  font: 17px/1.5 $serif;
+  color: #4c4c4c;
+  font: 21px/1.5 $serif;
+
+  a {
+    cursor: pointer;
+    border-bottom: 1px dotted #4c4c4c;
+  }
 }
 
 .xx-tags {
-  margin-top: 90px;
+  margin-top: 123px;
 
   &__title {
     margin-bottom: 24px;
@@ -154,7 +160,7 @@ div.xx-article {
     justify-content: center;
 
     margin-bottom: 15px;
-    border: 1px solid $white-color;
+    border: 1px solid #969696;
     width: 100%;
 
     font: 15px $serif;
@@ -173,6 +179,7 @@ div.xx-article {
     &--image {
       background-position: center;
       background-size: cover;
+      border: none;
 
       > button {
         min-height: 95px;
@@ -185,14 +192,15 @@ div.xx-article {
 .xx-options {
   margin-top: 35px;
 
-
   &__title {
-    border-top: 1px solid $separator-color;
-    border-bottom: 1px solid $separator-color;
-    padding: 12px 0;
-    margin-bottom: 20px;
+    background-color: #4b4b4b;
+    padding: 20px 0;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-bottom: 30px;
 
-    font: 16px $sans;
+    color: $white-color;
+    font: 17px $sans;
     text-align: center;
   }
 
@@ -203,7 +211,11 @@ div.xx-article {
   &__item {
     flex: 1;
 
-    font: 17px/1.5 $serif;
+    padding-top: 10px;
+    padding-bottom: 25px;
+
+    color: #4c4c4c;
+    font: 19px/1.5 $serif;
 
     &:first-child {
       border-right: 1px solid $separator-color;
@@ -212,6 +224,11 @@ div.xx-article {
 
     &:last-child {
       padding-left: 25px;
+    }
+
+    a {
+      cursor: pointer;
+      border-bottom: 1px dotted #4c4c4c;
     }
   }
 
@@ -235,7 +252,7 @@ div.xx-article {
   margin-right: 5px;
   width: 20px;
 
-  background-color: #aaaaaa;
+  background-color: #4b4b4b;
   border-radius: 100%;
   color: $white-color;
   font: 13px/20px $sans;
@@ -329,8 +346,14 @@ div.xx-article {
 
   &__replay {
     margin-top: 60px;
+    margin-bottom: 30px;
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  &__replay,
+  &__story {
+    width: 215px;
   }
 }
 
@@ -492,6 +515,8 @@ div.xx-article {
 
   &__age,
   &__rank {
+    position: relative;
+
     flex: 1;
     display: flex;
     align-items: center;
@@ -500,6 +525,14 @@ div.xx-article {
     border-top: 1px solid $separator-color;
     border-bottom: 1px solid $separator-color;
     height: 90px;
+  }
+
+  &__title {
+    position: absolute;
+    top: -33px;
+
+    color: #4c4c4c;
+    font: 17px $sans;
   }
 
   &__age {
@@ -513,15 +546,13 @@ div.xx-article {
   }
 
   &__rank-title {
-    font: bold 17px $sans;
-  }
-
-  &__rank-separator {
-    margin: 8px 0;
-    width: 35px;
+    font: bold 19px $sans;
   }
 
   &__rank-type {
+    margin-top: 5px;
+
+    color: #969696;
     font: italic 15px $serif;
   }
 
@@ -576,11 +607,11 @@ div.xx-article {
   &__ribbon {
     position: absolute;
     left: 50%;
-    bottom: -16px;
+    bottom: -14px;
     transform: translateX(-50%);
 
-    width: 188px;
-    height: 38px;
+    width: 254px;
+    height: 36px;
 
     background-image: url('https://s3.eu-central-1.amazonaws.com/arzamas-static/x/334-school-w9gxEU0N22MfiGAcrMoZs7TAa3/1200/icons/ribbon.svg');
     background-size: cover;
@@ -718,8 +749,13 @@ div.xx-article {
     text-align: center;
   }
 
+  &__subtitle {
+    color: #4c4c4c;
+    font: 17px $sans;
+  }
+
   &__rank {
-    margin: 10px 0 30px;
+    margin: 5px 0 10px;
     font: bold 21px $sans;
   }
 
@@ -849,6 +885,68 @@ div.xx-article {
         border-right-color: transparent;
         border-left-color: #ffffff;
       }
+    }
+  }
+}
+
+.xx-history {
+  margin-top: 45px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 50px;
+
+  text-align: center;
+
+  &__text {
+    width: 640px;
+    margin: 45px auto;
+
+    font: 17px/26px $serif;
+    text-align: left;
+  }
+}
+
+@media print {
+  body > * {
+    display: none;
+  }
+
+  .section-container,
+  .article {
+    display: block !important;
+
+    > * {
+      display: none;
+    }
+  }
+
+  .app {
+    display: block !important;
+  }
+
+  .xx-article {
+    padding: 0;
+    margin: 0;
+    width: auto;
+
+    > * {
+      display: none;
+    }
+  }
+
+  .xx-history {
+    display: block;
+    margin-top: 0;
+    padding: 0;
+    border: none;
+
+    button {
+      display: none;
+    }
+
+    &__text {
+      width: 700px;
+      margin: 0 auto;
     }
   }
 }

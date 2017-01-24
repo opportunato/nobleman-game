@@ -17,7 +17,7 @@ const getImgDimensions = (width, height) => {
 };
 
 const Note = ({ noteId, onClose }) => {
-  const currentNote = notes.find(note => note.title === noteId);
+  const currentNote = notes.find(note => note.id === noteId);
   if (!currentNote) return null;
   const {title, text, img} = currentNote;
 

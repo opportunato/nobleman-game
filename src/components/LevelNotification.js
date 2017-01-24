@@ -4,7 +4,7 @@ import Loading from './Loading';
 import Badge from './Badge';
 
 const LevelNotification = ({ onClose, isLoading, currentRank, transitionText }) => (
-  <Modal>
+  <Modal onClose={!isLoading && onClose}>
     <div className="xx-level">
       {
         isLoading &&
@@ -16,18 +16,16 @@ const LevelNotification = ({ onClose, isLoading, currentRank, transitionText }) 
         !isLoading &&
         <div className="xx-level__body">
           <div className="xx-level__title">{transitionText}</div>
+          <div className="xx-level__subtitle">
+            Новый чин
+          </div>
+          <div className="xx-level__rank">
+            {currentRank ? (currentRank.displayText || currentRank.text) : "Без ранга"}
+          </div>
           <Badge
             className="xx-level__badge"
             currentRank={currentRank}
           />
-          <div className="xx-level__rank">
-            {currentRank ? (currentRank.displayText || currentRank.text) : "Без ранга"}
-          </div>
-          <ul className="xx-level__rank-types">
-            <li className={(currentRank && currentRank.type === 'citizen') ? 'xx-level__rank-type-selected' : ''}>Гражданский</li>
-            <li className={(currentRank && currentRank.type === 'military') ? 'xx-level__rank-type-selected' : ''}>Военный</li>
-            <li className={(currentRank && currentRank.type === 'court') ? 'xx-level__rank-type-selected' : ''}>Придворный</li>
-          </ul>
           <div className="xx-level__separator xx-separator" />
           <button
             className="xx-btn xx-btn--inverted xx-options__button"
